@@ -70,6 +70,15 @@
             tapping-term-ms = <200>;
             bindings = <&kp>, <&to>;
         };
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <100>;
+            quick-tap-ms = <200>;
+	    require-prior-idle-ms = <125>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
     };
     keymap {
         compatible = "zmk,keymap";
@@ -83,9 +92,9 @@
                 &kp A      &kp R      &kp S      &kp T      &kp D          &kp H      &mmleft    &mmdown    &mmup      &mmright
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
-                &kp Z &mt LCTRL X &mt RALT C &mt LGUI V     &lt NAVI B     &kp K &mt LGUI M &mt LALT COMMA &mt LCTRL DOT &kp FSLH
+                &kp Z    &hm LCTRL X &hm RALT C &hm LGUI V &lt NAVI B     &kp K &hm LGUI M &hm LALT COMMA &hm LCTRL DOT &kp FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                        &mt LCTRL ENTER  &mt LSHFT SPACE    &gresc   &mto RALT 1 // devicetree error: <Node /pin-controller/uart0_default in '/tmp/zmk-config/zephyr/misc/empty_file.c'> lacks #binding-cells
+                                        &mt LSHFT SPACE  &mt LCTRL ENTER    &gresc   &mto RALT 1 // devicetree error: <Node /pin-controller/uart0_default in '/tmp/zmk-config/zephyr/misc/empty_file.c'> lacks #binding-cells
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
