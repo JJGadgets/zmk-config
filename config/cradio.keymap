@@ -18,6 +18,7 @@
 #define NUM 1
 #define NAVI 2
 #define FN 3
+#define GAME 4
 
 / {
     behaviors {
@@ -57,6 +58,30 @@
             bindings = <&kp BACKSPACE>, <&kp APOSTROPHE>;
             mods = <(MOD_RALT)>;
         };
+        mmydel: mod_morph_y_delete {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp Y>, <&kp DELETE>;
+            mods = <(MOD_RALT)>;
+        };
+        mmkcad: mod_morph_k_control_alt_delete {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp K>, <&kp LC(LA(DELETE))>;
+            mods = <(MOD_RALT)>;
+        };
+        mmatab: mod_morph_a_tab {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp A>, <&kp TAB>;
+            mods = <(MOD_RALT)>;
+        };
+        mmhat: mod_morph_h_alt_tab {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp H>, <&kp LA(TAB)>;
+            mods = <(MOD_RALT)>;
+        };
         mmds: mod_morph_delete_semicolon {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -84,21 +109,21 @@
         default_layer {
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            //│  Q       │  W       │  F       │  P       │  G       │   │  J       │  L       │  U       │  Y       │  '"<BSPC>│
-                &kp Q      &kp W      &kp F      &kp P      &kp G          &kp J      &kp L      &kp U      &kp Y      &mmab
+            //│  Q       │  W       │  F       │  P       │  G       │   │  J       │  L       │  U       │  Y       │ '"<BSPC> │
+                &kp Q      &kp W      &kp F      &kp P      &kp G          &kp J      &kp L      &kp U      &mmydel    &mmab
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│  A       │  R       │  S       │  T       │  D       │   │  H       │  N       │  E       │  I       │  O       │
-                &kp A      &kp R      &kp S      &kp T      &kp D          &kp H      &mmleft    &mmdown    &mmup      &mmright
+            //│  A       │  R       │  S       │  T       │  D       │   │ H<ALTTAB>│  N       │  E       │  I       │  O       │
+                &mmatab    &kp R      &kp S      &kp T      &kp D          &mmhat     &mmleft    &mmdown    &mmup      &mmright
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
-                &kp Z    &hm LCTRL X &hm RALT C &hm LGUI V &lt NAVI B     &kp K &hm LGUI M &hm LALT COMMA &hm LCTRL DOT &kp FSLH
+                &kp Z    &hm LCTRL X &hm RALT C &hm LGUI V &lt NAVI B    &mmkcad &hm LGUI M &hm LALT COMMA &hm LCTRL DOT &kp FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                        &mt LSHFT SPACE  &mt LCTRL ENTER    &gresc   &mto RALT 1 // devicetree error: <Node /pin-controller/uart0_default in '/tmp/zmk-config/zephyr/misc/empty_file.c'> lacks #binding-cells
+                                        &mt LCTRL ENTER  &mt LSHFT SPACE    &gresc   &mto RALT NUM // esc gets thumb because of vim
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
         num_layer {
-            bindings = < // TODO: Layer 2
+            bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
             //│  PLAY    │  1       │  2       │  3       │  =+      │   │ Fn Layer │ [{       │ ]}       │ \|       │ ;:       │
                 &kp C_PP   &kp N1     &kp N2     &kp N3     &kp EQUAL      &to FN     &kp LBKT   &kp RBKT   &kp BSLH   &mmds
@@ -109,7 +134,7 @@
             //│  ` ESC   │  7       │  8       │  9       │  -_      │   │ TAB      │ HOME     │ PG_UP    │ PG_DN    │ END      │
                  &gresc     &kp N7     &kp N8     &kp N9    &kp MINUS      &kp TAB    &kp HOME   &kp PG_UP &kp PG_DN   &kp END
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &to 0 &mt LSHFT SPACE &mt LCTRL ENTER &kp RALT
+                                        &mt LCTRL ENTER  &mt LSHFT SPACE    &to 0     &kp RALT
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -119,13 +144,13 @@
             //│ HOME     │ PG_DN    │ PG_UP    │ END      │ PSCRN    │   │          │          │          │          │          │
                 &kp HOME  &kp PG_DN   &kp PG_UP  &kp END    &kp PSCRN      &trans     &trans   &bt BT_CLR  &bt BT_CLR_ALL &trans
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│ LEFT     │ DOWN     │ UP       │ RIGHT    │ Default  │   │          │TODO:BTDSC│          │          │          │
+            //│ LEFT     │ DOWN     │ UP       │ RIGHT    │ Num Layer│   │          │TODO:BTDSC│          │          │          │
                 &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &to NUM    &out OUT_TOG   &trans    &bt BT_PRV &bt BT_NXT &ext_power EP_TOG
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ LCTRL    │ TAB      │ LALT     │ LGUI     │          │   │          │          │          │          │          │
                 &kp LCTRL  &kp TAB    &kp LALT   &kp LGUI   &trans    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &trans     &trans         &trans     &trans
+                                                 &trans     &trans         &to 0      &trans
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -141,7 +166,23 @@
             //│ LCTRL    │ LALT     │ LGUI     │ F11      │ F12      │   │ F23      │ F24      │ RGUI     │ RALT     │ RCTRL    │
                 &kp LCTRL  &kp LALT   &kp LGUI   &kp F11    &kp F12        &kp F23    &kp F24    &kp RGUI   &kp RALT   &kp RCTRL // TODO: meh key
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &to 0      &trans         &trans     &trans
+                                                 &trans      &trans         &to 0     &to GAME
+            //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+            >;
+        };
+        game_layer {
+            bindings = < // TODO: complete gaming layer, not sure how to fit
+            //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
+            //│  TAB     │  Q       │  W       │  F       │  P       │   │  J       │  L       │  U       │  Y       │ '"<BSPC> │
+                &kp TAB      &kp Q      &kp W      &kp F      &kp P          &kp J      &kp L      &kp U      &mmydel    &mmab
+            //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+            //│  SHIFT   │  A       │  R       │  S       │  T       │   │ H<ALTTAB>│  N       │  E       │  I       │  O       │
+                &kp LSHFT    &kp A      &kp R      &kp S      &kp T          &mmhat     &mmleft    &mmdown    &mmup      &mmright
+            //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+            //│  CTRL    │  Z       │  X       │  C       │  V       │   │  K       │  M       │  ,<      │  .>      │  /?      │
+                &kp LCTRL    &kp Z     &kp X     &kp C      &kp V           &trans &trans &trans &trans &to 0
+            //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
+                                                 &kp H      &kp SPACE      &kp ENTER &mto RALT 1
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
