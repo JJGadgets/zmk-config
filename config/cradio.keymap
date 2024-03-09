@@ -18,16 +18,9 @@
 #define NUM 1
 #define NAVI 2
 #define FN 3
-//#define GAME 4
 
 / {
     behaviors {
-        //mm: mod_morph {
-        //    compatible = "zmk,behavior-mod-morph";
-        //    #binding-cells = <0>;
-        //    bindings = <&kp>, <&kp>;
-        //    mods = <(MOD_RALT)>;
-        //};
         /omit-if-no-ref/ mmsa: mod_morph_delete_semicolon {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -45,8 +38,10 @@
         /omit-if-no-ref/ lt2: layer_tap_2 {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
+            flavor = "hold-preferred";
+	    hold-while-undecided;
+	    hold-while-undecided-linger;
+            tapping-term-ms = <125>;
             bindings = <&mo>, <&to>;
         };
     };
@@ -55,14 +50,14 @@
         default_layer {
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            //│  Q       │  W       │  F       │  P       │  G       │   │  J       │  L       │  U       │  Y       │ BSPC     │
-                &kp Q      &kp W      &kp F      &kp P      &kp G          &kp J      &kp L      &kp U      &kp Y      &kp BSPC
+            //│  Q       │  W       │  F       │  P       │  G       │   │  J       │  L       │  U       │  Y       │ '"       │
+                &kp Q      &kp W      &kp F      &kp P      &kp G          &kp J      &kp L      &kp U      &kp Y      &mmsa
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  A       │  R       │  S       │  T       │  D       │   │ H        │  N       │  E       │  I       │  O       │
                 &kp A      &kp R      &kp S      &kp T      &kp D          &kp H      &kp N      &kp E      &kp I      &kp O
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
-                &kp Z    &hm LCTRL X &hm RALT C &hm LGUI V &lt NAVI B      &kp K &hm LGUI M &hm RALT COMMA &hm LCTRL DOT &kp FSLH
+                &lt FN Z &hm LCTRL X &hm RALT C &hm LGUI V &lt NAVI B      &kp K &hm LGUI M &hm RALT COMMA &hm LCTRL DOT &kp FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                          &mt LCTRL ESC &mt LSHFT SPACE &mt RALT ENTER &lt2 NUM NUM // esc gets thumb because of vim
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
@@ -71,8 +66,8 @@
         num_layer {
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            //│ `~       │  1       │  2       │  3       │  =+      │   │ ;:       │ [{       │ ]}       │ \|       │ '"       │
-                &kp GRAVE  &kp N1     &kp N2     &kp N3     &kp EQUAL      &kp SEMI   &kp LBKT   &kp RBKT   &kp BSLH   &kp APOS
+            //│ `~       │  1       │  2       │  3       │  =+      │   │ ;:       │ [{       │ ]}       │ \|       │ BSPC     │
+                &kp GRAVE  &kp N1     &kp N2     &kp N3     &kp EQUAL      &kp SEMI   &kp LBKT   &kp RBKT   &kp BSLH   &kp BSPC
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  DELETE  │  4       │  5       │  6       │  0       │   │ TAB      │ LEFT     │ DOWN     │ UP       │ RIGHT    │
                  &kp DEL    &kp N4     &kp N5     &kp N6     &kp N0        &kp TAB    &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT
@@ -80,7 +75,7 @@
             //│  ` ESC   │  7       │  8       │  9       │  -_      │   │ PSCRN    │ HOME     │ PG_UP    │ PG_DN    │ END      │
                  &gresc     &kp N7     &kp N8     &kp N9    &kp MINUS      &kp PSCRN  &kp HOME   &kp PG_UP &kp PG_DN   &kp END
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &to 0 &mt LSHFT ENTER &mt LCTRL BSPC &kp LALT
+                                                 &to 0 &mt LSHFT ENTER &mt LCTRL BSPC &kp RALT
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -96,7 +91,7 @@
             //│ HOME     │ PG_DN    │ PG_UP    │ END      │          │   │          │          │          │          │          │
                 &kp HOME  &kp PG_DN   &kp PG_UP  &kp END    &trans    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &trans     &kp ENTER       &trans     &to FN
+                                               &kp LA(TAB)  &kp ENTER       &trans     &to FN
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -112,44 +107,10 @@
             //│ LCTRL    │ LALT     │ LGUI     │ F11      │ F12      │   │ F23      │ F24      │ RGUI     │ RALT     │ RCTRL    │
                 &kp LCTRL  &kp LALT   &kp LGUI   &kp F11    &kp F12        &kp F23    &kp F24    &kp RGUI   &kp RALT   &kp RCTRL // TODO: meh key
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &trans      &trans         &to 0     &trans //&to GAME
+                                                 &to 0      &trans         &trans     &trans //&to GAME
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
-//        game_layer {
-//            bindings = < // TODO: complete gaming layer, not sure how to fit
-//            //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-//            //│  TAB     │  Q       │  W       │  F       │  P       │   │  J       │  L       │  U       │  Y       │ '"<BSPC> │
-//                &kp TAB      &kp Q      &kp W      &kp F      &kp P          &kp J      &kp L      &kp U      &mmydel    &mmab
-//            //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-//            //│  SHIFT   │  A       │  R       │  S       │  T       │   │ H<ALTTAB>│  N       │  E       │  I       │  O       │
-//                &kp LSHFT    &kp A      &kp R      &kp S      &kp T          &mmhat     &mmleft    &mmdown    &mmup      &mmright
-//            //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-//            //│  CTRL    │  Z       │  X       │  C       │  V       │   │  K       │  M       │  ,<      │  .>      │  /?      │
-//                &kp LCTRL    &kp Z     &kp X     &kp C      &kp V           &trans &trans &trans &trans &to 0
-//            //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-//                                                 &kp H      &kp SPACE      &kp ENTER &mto RALT 1
-//            //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
-//            >;
-//        };
 	// TODO: mouse layer
     };
-//         hold: hold_tap {
-//             compatible = "zmk,behavior-hold-tap";
-//             #binding-cells = <2>;
-//             flavor = "tap-preferred";
-//             tapping-term-ms = <220>;
-//             quick-tap-ms = <150>;
-//             require-prior-idle-ms = <100>;
-//             bindings = <&kp>, <&kp>;
-//         };
-// 
-//     conditional_layers {
-//         compatible = "zmk,conditional-layers";
-//         tri_layer {
-//             if-layers = <1 2>;
-//             then-layer = <3>;
-//         };
-//     };
-// 
 };
