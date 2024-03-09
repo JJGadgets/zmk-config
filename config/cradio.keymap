@@ -18,7 +18,7 @@
 #define NUM 1
 #define NAVI 2
 #define FN 3
-#define GAME 4
+//#define GAME 4
 
 / {
     behaviors {
@@ -64,7 +64,7 @@
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
                 &kp Z    &hm LCTRL X &hm RALT C &hm LGUI V &lt NAVI B      &kp K &hm LGUI M &hm RALT COMMA &hm LCTRL DOT &kp FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &kp SPACE  &kp LSHFT  &mt LCTRL ESC &lt2 NUM NUM // esc gets thumb because of vim
+                                         &mt LCTRL ESC &mt LSHFT SPACE &mt RALT ENTER &lt2 NUM NUM // esc gets thumb because of vim
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -80,7 +80,7 @@
             //│  ` ESC   │  7       │  8       │  9       │  -_      │   │ PSCRN    │ HOME     │ PG_UP    │ PG_DN    │ END      │
                  &gresc     &kp N7     &kp N8     &kp N9    &kp MINUS      &kp PSCRN  &kp HOME   &kp PG_UP &kp PG_DN   &kp END
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &to 0 &mt LSHFT ENTER &mt LCTRL ESC  &kp LALT
+                                                 &to 0 &mt LSHFT ENTER &mt LCTRL BSPC &kp LALT
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -112,7 +112,7 @@
             //│ LCTRL    │ LALT     │ LGUI     │ F11      │ F12      │   │ F23      │ F24      │ RGUI     │ RALT     │ RCTRL    │
                 &kp LCTRL  &kp LALT   &kp LGUI   &kp F11    &kp F12        &kp F23    &kp F24    &kp RGUI   &kp RALT   &kp RCTRL // TODO: meh key
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &trans      &trans         &to 0     &trans//&to GAME
+                                                 &trans      &trans         &to 0     &trans //&to GAME
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
