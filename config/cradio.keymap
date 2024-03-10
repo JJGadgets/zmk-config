@@ -15,6 +15,16 @@
 #define NAVI 2
 #define FN 3
 
+&mt {
+    bindings = <&sk>, <&kp>;
+}
+&sk {
+    quick-release;
+}
+&lt {
+    require-prior-idle-ms = <100>;
+}
+
 / {
     behaviors {
         /omit-if-no-ref/ mmsa: mod_morph_delete_semicolon {
@@ -23,13 +33,38 @@
             bindings = <&kp APOSTROPHE>, <&kp SEMICOLON>;
             mods = <(MOD_RALT)>;
         };
-        /omit-if-no-ref/ hm: homerow_mods {
+        /omit-if-no-ref/ mmat: mod_morph_a_tab {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp A>, <&kp TAB>;
+            mods = <(MOD_RALT|MOD_RGUI)>;
+        };
+        /omit-if-no-ref/ mmec: mod_morph_esc_caps {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp ESC>, <&caps_word>;
+            mods = <(MOD_LSFT)>;
+        };
+        /omit-if-no-ref/ esc: esc_ctrl {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
+            flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            require-prior-idle-ms = <100>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
+            bindings = <&kp>, <&mmec>;
+        };
+        /omit-if-no-ref/ rm: repeat_mod {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&key_repeat>;
+        };
+        /omit-if-no-ref/ mto: mod_tap_to {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&sk>, <&to>;
         };
         /omit-if-no-ref/ lt2: layer_tap_2 {
             compatible = "zmk,behavior-hold-tap";
@@ -38,22 +73,36 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&to>;
         };
+        /omit-if-no-ref/ mmzd: mod_morph_z_delete {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp Z>, <&kp DEL>;
+            mods = <(MOD_RALT)>;
+        };
+        /omit-if-no-ref/ ltz: layer_tap_z {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            require-prior-idle-ms = <100>;
+            bindings = <&mo>, <&mmzd>;
+        };
     };
     keymap {
         compatible = "zmk,keymap";
         default_layer {
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            //│  Q       │  W       │  F       │  P       │  G       │   │  J       │  L       │  U       │  Y       │ '"       │
-                &kp Q      &kp W      &kp F      &kp P      &kp G          &kp J      &kp L      &kp U      &kp Y      &mmsa
+            //│  Q       │  W       │  F       │  P       │  B       │   │  J       │  L       │  U       │  Y       │ '"       │
+                &kp Q      &kp W      &kp F      &kp P      &kp B          &kp J      &kp L      &kp U      &kp Y      &mmsa
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│  A       │  R       │  S       │  T       │  D       │   │ H        │  N       │  E       │  I       │  O       │
-                &kp A      &kp R      &kp S      &kp T      &kp D          &kp H      &kp N      &kp E      &kp I      &kp O
+            //│  A       │  R       │  S       │  T       │  G       │   │ M        │  N       │  E       │  I       │  O       │
+                &mmat      &kp R      &kp S      &kp T      &kp G          &kp M      &kp N      &kp E      &kp I      &kp O
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
-                &lt FN Z &hm LCTRL X &hm RALT C &hm LGUI V &lt NAVI B      &kp K &hm LGUI M &hm RALT COMMA &hm LCTRL DOT &kp FSLH
+            //│  Z       │  X       │  C       │  D       │  V       │   │  K       │  H       │  ,<      │  .>      │  /?      │
+               &ltz FN Z &lt LCTRL X &lt RALT C &lt RGUI D &lt NAVI V      &kp K &lt LGUI H &lt LALT COMMA &lt LCTRL DOT &kp FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                         &mt LCTRL ESC &mt LSHFT SPACE &mt RALT ENTER &lt2 NUM NUM // esc gets thumb because of vim and as a safe key to verify layer 0
+                                          &esc LCTRL ESC &mt LSHFT SPACE &rm RALT R &lt2 NUM NUM // esc gets thumb because of vim and as a safe key to verify layer 0
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -63,13 +112,13 @@
             //│ `~       │  1       │  2       │  3       │  =+      │   │ ;:       │ [{       │ ]}       │ \|       │ BSPC     │
                 &kp GRAVE  &kp N1     &kp N2     &kp N3     &kp EQUAL      &kp SEMI   &kp LBKT   &kp RBKT   &kp BSLH   &kp BSPC
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│  DELETE  │  4       │  5       │  6       │  0       │   │ TAB      │ LEFT     │ DOWN     │ UP       │ RIGHT    │
-                 &kp DEL    &kp N4     &kp N5     &kp N6     &kp N0        &kp TAB    &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT
+            //│ TAB      │  4       │  5       │  6       │  0       │   │ TAB      │ LEFT     │ DOWN     │ UP       │ RIGHT    │
+                &kp TAB    &kp N4     &kp N5     &kp N6     &kp N0         &kp TAB    &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│  ` ESC   │  7       │  8       │  9       │  -_      │   │ PSCRN    │ HOME     │ PG_UP    │ PG_DN    │ END      │
-                 &gresc     &kp N7     &kp N8     &kp N9    &kp MINUS      &kp PSCRN  &kp HOME   &kp PG_UP &kp PG_DN   &kp END
+            //│ DELETE   │  7       │  8       │  9       │  -_      │   │ PSCRN    │ HOME     │ PG_UP    │ PG_DN    │ END      │
+                &kp DEL    &kp N7     &kp N8     &kp N9     &kp MINUS      &kp PSCRN  &kp HOME   &kp PG_UP &kp PG_DN   &kp END
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &to 0 &mt LSHFT ENTER &mt LCTRL BSPC &kp RALT
+                                          &mto LCTRL 0 &mt LSHFT SPACE &mt RALT ENTER &lt2 FN FN
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
