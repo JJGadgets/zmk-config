@@ -53,11 +53,11 @@
             //│  Q       │  W       │  F       │  P       │  G       │   │  J       │  L       │  U       │  Y       │ '"       │
                 &kp Q      &kp W      &kp F      &kp P      &kp G          &kp J      &kp L      &kp U      &kp Y      &mmsa
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│  A       │  R       │  S       │  T       │  D       │   │ H        │  N       │  E       │  I       │  O       │
-                &kp A      &kp R      &kp S      &kp T      &kp D          &kp H      &kp N      &kp E      &kp I      &kp O
+            //│  A       │  R       │  S       │  T       │  C       │   │ K        │  N       │  E       │  I       │  O       │
+                &kp A      &kp R      &kp S      &kp T      &kp C          &kp K      &kp N      &kp E      &kp I      &kp O
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
-                &lt FN Z &hm LCTRL X &hm RALT C &hm LGUI V &lt NAVI B      &kp K &hm LGUI M &hm RALT COMMA &hm LCTRL DOT &kp FSLH
+            //│  /?      │  Z       │  X       │  D       │  V       │   │  B       │  H       │  M       │  ,<      │  .>      │
+                &lt FN FSLH &hm LCTRL Z &hm RALT X &hm LGUI D &lt NAVI V      &kp B &hm LGUI H &hm RALT M &hm LCTRL COMMA &kp DOT
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                          &mt LCTRL ESC &mt LSHFT SPACE &mt RALT ENTER &lt2 NUM NUM // esc gets thumb because of vim
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
