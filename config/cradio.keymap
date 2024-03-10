@@ -38,6 +38,7 @@
             #binding-cells = <0>;
             bindings = <&kp A>, <&kp TAB>;
             mods = <(MOD_RALT|MOD_RGUI)>;
+            keep-mods = <(MOD_RALT|MOD_RGUI)>;
         };
         /omit-if-no-ref/ mmec: mod_morph_esc_caps {
             compatible = "zmk,behavior-mod-morph";
