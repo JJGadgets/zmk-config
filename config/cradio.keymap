@@ -9,10 +9,6 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/ext_power.h>
 
-// Home row mods macro
-#define HRML(k1,k2,k3,k4) &ht LSHFT k1  &ht LALT k2  &ht LCTRL k3  &ht LGUI k4
-#define HRMR(k1,k2,k3,k4) &ht RGUI k1  &ht RCTRL k2  &ht RALT k3  &ht RSHFT k4
-
 // Layers name to integer definition
 #define DEFAULT 0
 #define NUM 1
@@ -31,7 +27,7 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <200>;
-	    require-prior-idle-ms = <100>;
+            require-prior-idle-ms = <100>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
@@ -39,9 +35,7 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
-	    hold-while-undecided;
-	    hold-while-undecided-linger;
-            tapping-term-ms = <125>;
+            tapping-term-ms = <200>;
             bindings = <&mo>, <&to>;
         };
     };
@@ -53,13 +47,13 @@
             //│  Q       │  W       │  F       │  P       │  G       │   │  J       │  L       │  U       │  Y       │ '"       │
                 &kp Q      &kp W      &kp F      &kp P      &kp G          &kp J      &kp L      &kp U      &kp Y      &mmsa
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│  A       │  R       │  S       │  T       │  C       │   │ K        │  N       │  E       │  I       │  O       │
-                &kp A      &kp R      &kp S      &kp T      &kp C          &kp K      &kp N      &kp E      &kp I      &kp O
+            //│  A       │  R       │  S       │  T       │  D       │   │ H        │  N       │  E       │  I       │  O       │
+                &kp A      &kp R      &kp S      &kp T      &kp D          &kp H      &kp N      &kp E      &kp I      &kp O
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│  /?      │  Z       │  X       │  D       │  V       │   │  B       │  H       │  M       │  ,<      │  .>      │
-                &lt FN FSLH &hm LCTRL Z &hm RALT X &hm LGUI D &lt NAVI V      &kp B &hm LGUI H &hm RALT M &hm LCTRL COMMA &kp DOT
+            //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
+                &lt FN Z &hm LCTRL X &hm RALT C &hm LGUI V &lt NAVI B      &kp K &hm LGUI M &hm RALT COMMA &hm LCTRL DOT &kp FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                         &mt LCTRL ESC &mt LSHFT SPACE &mt RALT ENTER &lt2 NUM NUM // esc gets thumb because of vim
+                                         &mt LCTRL ESC &mt LSHFT SPACE &mt RALT ENTER &lt2 NUM NUM // esc gets thumb because of vim and as a safe key to verify layer 0
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
