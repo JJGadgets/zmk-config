@@ -17,13 +17,13 @@
 
 &mt {
     bindings = <&sk>, <&kp>;
-}
+};
 &sk {
     quick-release;
-}
+};
 &lt {
     require-prior-idle-ms = <100>;
-}
+};
 
 / {
     behaviors {
