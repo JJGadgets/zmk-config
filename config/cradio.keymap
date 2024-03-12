@@ -195,7 +195,7 @@
                 &trans     &trans     &trans     &trans     &kg            &trans     &trans     &ke        &trans     &trans
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  Z       │  X       │  C       │  D       │  V       │   │  K       │  H       │  ,<      │  .>      │  /?      │
-                &trans     &kx        &trans     &trans     &trans         &kk        &trans     &trans     &trans     &trans
+                &trans     &kx        &trans     &trans     &trans         &k9s       &trans     &trans     &trans     &trans
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                                  &to 0      &trans         &trans     &trans //&to GAME
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
@@ -237,10 +237,10 @@
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
             //│  Q       │  W       │  F       │  P       │  B       │   │  J       │  L       │  U       │  Y       │ '"       │
-                &trans     &trans     &trans     &trans     &trans         &trans     &tl        &trans     &trans     &trans
+                &trans     &trans     &trans     &trans     &trans         &trans     &talos     &trans     &trans     &trans
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  A       │  R       │  S       │  T       │  G       │   │  M       │  N       │  E       │  I       │  O       │
-                &trans     &trans     &trans     &tt        &trans         &trans     &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &task      &trans         &trans     &trans     &trans     &trans     &trans
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  Z       │  X       │  C       │  D       │  V       │   │  K       │  H       │  ,<      │  .>      │  /?      │
                 &trans     &trans     &trans     &trans     &trans         &trans     &trans     &trans     &trans     &trans
@@ -252,55 +252,15 @@
 	// TODO: mouse layer
     };
     macros {
-        nvim: nvim {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp N &kp V &kp I &kp M &kp SPACE &to 0>;
-        };
-        ls: ls {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp L &kp S &kp SPACE &kp KP_MINUS>, <&macro_press &kp LSHFT>, <&kp A>, <&macro_release &kp LSHFT>, <&kp L &kp H &kp SPACE &to 0>;
-        };
-        tt: task {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp T &kp A &kp S &kp K &kp SPACE &to 0>;
-        };
-        tl: talosctl {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp T &kp A &kp L &kp O &kp S &kp C &kp T &kp L &kp SPACE &to 0>;
-        };
-        fgr: flux_get_hr {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp F &kp L &kp U &kp X &kp SPACE &kp G &kp E &kp T &kp SPACE &kp H &kp R &kp SPACE &kp KP_MINUS &kp N &kp SPACE &to 0>;
-        };
-        fgk: flux_get_ks {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp F &kp L &kp U &kp X &kp SPACE &kp G &kp E &kp T &kp SPACE &kp K &kp S &kp SPACE &to 0>;
-        };
-        kk: k9s {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp K &kp N9 &kp S &kp ENTER &to 0>;
-        };
-        kg: kubectl_get {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp K &kp U &kp B &kp E &kp C &kp T &kp L &kp SPACE &kp G &kp E &kp T &kp SPACE &kp KP_MINUS &kp N &kp SPACE &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp SPACE &to 0>;
-        };
-        ke: kubectl_edit {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp K &kp U &kp B &kp E &kp C &kp T &kp L &kp SPACE &kp E &kp D &kp I &kp T &kp SPACE &kp KP_MINUS &kp N &kp SPACE &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp SPACE &to 0>;
-        };
-        kx: kubectl_exec {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp K &kp U &kp B &kp E &kp C &kp T &kp L &kp SPACE &kp E &kp X &kp E &kp C &kp SPACE &kp KP_MINUS &kp I &kp T &kp SPACE &kp KP_MINUS &kp N &kp SPACE &kp KP_MINUS &kp KP_MINUS &kp SPACE &kp B &kp A &kp S &kp H &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp SPACE &to 0>;
-        };
+        ZMK_MACRO(nvim, bindings = <&kp N &kp V &kp I &kp M &kp SPACE &to 0>;)
+        ZMK_MACRO(ls, bindings = <&kp L &kp S &kp SPACE &kp KP_MINUS>, <&macro_press &kp LSHFT>, <&kp A>, <&macro_release &kp LSHFT>, <&kp L &kp H &kp SPACE &to 0>;)
+        ZMK_MACRO(task, bindings = <&kp T &kp A &kp S &kp K &kp SPACE &to 0>;)
+        ZMK_MACRO(talos, bindings = <&kp T &kp A &kp L &kp O &kp S &kp C &kp T &kp L &kp SPACE &to 0>;) // talosctl
+        ZMK_MACRO(fgr, bindings = <&kp F &kp L &kp U &kp X &kp SPACE &kp G &kp E &kp T &kp SPACE &kp H &kp R &kp SPACE &kp KP_MINUS &kp N &kp SPACE &to 0>;) // flux get hr
+        ZMK_MACRO(fgk, bindings = <&kp F &kp L &kp U &kp X &kp SPACE &kp G &kp E &kp T &kp SPACE &kp K &kp S &kp SPACE &to 0>;) // flux get ks
+        ZMK_MACRO(k9s, bindings = <&kp K &kp N9 &kp S &kp ENTER &to 0>;)
+        ZMK_MACRO(kg, bindings = <&kp K &kp U &kp B &kp E &kp C &kp T &kp L &kp SPACE &kp G &kp E &kp T &kp SPACE &kp KP_MINUS &kp N &kp SPACE &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp SPACE &to 0>;) // kubectl get -n
+        ZMK_MACRO(ke, bindings = <&kp K &kp U &kp B &kp E &kp C &kp T &kp L &kp SPACE &kp E &kp D &kp I &kp T &kp SPACE &kp KP_MINUS &kp N &kp SPACE &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp SPACE &to 0>;) // kubectl edit -n
+        ZMK_MACRO(kx, bindings = <&kp K &kp U &kp B &kp E &kp C &kp T &kp L &kp SPACE &kp E &kp X &kp E &kp C &kp SPACE &kp KP_MINUS &kp I &kp T &kp SPACE &kp KP_MINUS &kp N &kp SPACE &kp KP_MINUS &kp KP_MINUS &kp SPACE &kp B &kp A &kp S &kp H &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp SPACE &to 0>;) // kubectl exec -it -n
     };
 };
