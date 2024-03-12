@@ -285,7 +285,7 @@
         kk: k9s {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp K &kp 9 &kp S &kp ENTER &to 0>;
+            bindings = <&kp K &kp N9 &kp S &kp ENTER &to 0>;
         };
         kg: kubectl_get {
             compatible = "zmk,behavior-macro";
