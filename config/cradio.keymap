@@ -107,14 +107,14 @@
         default_layer {
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            //│  Q       │  W       │  F       │  P       │  B       │   │  J       │  L       │  U       │  Y       │ '"       │
-                &kp Q      &kp W      &kp F      &kp P      &kp B          &kp J      &kp L      &kp U      &kp Y      &mmsa
+            //│  Q       │  W       │  F       │  P       │  G       │   │  J       │  L       │  U       │  Y       │ '"       │
+                &kp Q      &kp W      &kp F      &kp P      &kp G          &kp J      &kp L      &kp U      &kp Y      &mmsa
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│  A       │  R       │  S       │  T       │  G       │   │  M       │  N       │  E       │  I       │  O       │
-                &mmat      &kp R      &kp S      &kp T     &lt TERM G      &kp M      &kp N      &kp E      &kp I      &kp O
+            //│  A       │  R       │  S       │  T       │  V       │   │  H       │  N       │  E       │  I       │  O       │
+                &mmat      &kp R      &kp S      &kp T     &lt TERM V      &kp H      &kp N      &kp E      &kp I      &kp O
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│  Z       │  X       │  C       │  D       │  V       │   │  K       │  H       │  ,<      │  .>      │  /?      │
-               &ltz FN Z &hm LCTRL X &hm RALT C &hm RGUI D &lt NAVI V      &kp K &hm LGUI H &hm LALT COMMA &hm LCTRL DOT &kp FSLH
+            //│  Z       │  X       │  C       │  D       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
+               &ltz FN Z &hm LCTRL X &hm RALT C &hm RGUI D &lt NAVI B     &kp K &hm LGUI M &hm LALT COMMA &hm LCTRL DOT &kp FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                           &esc LCTRL ESC &mt LSHFT SPACE &rm RALT R &lt2 NUM NUM // esc gets thumb because of vim and as a safe key to verify layer 0
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
@@ -132,7 +132,7 @@
             //│ DELETE   │  7       │  8       │  9       │  -_      │   │ PSCRN    │ HOME     │ PG_UP    │ PG_DN    │ END      │
                 &kp DEL    &kp N7     &kp N8     &kp N9     &kp MINUS      &kp PSCRN  &kp HOME   &kp PG_UP &kp PG_DN   &kp END
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                          &mto LCTRL 0 &mt LSHFT SPACE &mt RALT ENTER &lt2 FN FN
+                                          &mto LCTRL 0 &mt LSHFT SPACE &mt RALT ENTER &lt FN ESC
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -175,12 +175,12 @@
                 &trans     &trans     &to F      &trans     &trans         &trans     &ls        &trans     &trans     &trans
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  A       │  R       │  S       │  T       │  G       │   │  M       │  N       │  E       │  I       │  O       │
-                &trans     &trans     &trans     &to T      &trans         &trans     &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &to T      &trans         &trans     &nvim      &trans     &trans     &trans
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  Z       │  X       │  C       │  D       │  V       │   │  K       │  H       │  ,<      │  .>      │  /?      │
                 &trans     &trans     &trans     &trans     &trans         &to K      &trans     &trans     &trans     &trans
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &to 0      &trans         &trans     &trans //&to GAME
+                                                 &to 0      &trans         &trans     &to TERM
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -251,45 +251,55 @@
 	// TODO: mouse layer
     };
     macros {
+        nvim: nvim {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp N &kp V &kp I &kp M &kp SPACE &to 0>;
+        };
+        ls: ls {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp L &kp S &kp SPACE &kp KP_MINUS>, <&macro_press &kp LSHFT>, <&kp A>, <&macro_release &kp LSHFT>, <&kp L &kp H &kp SPACE &to 0>;
+        };
         tt: task {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp T &kp A &kp S &kp K &kp SPACE>;
+            bindings = <&kp T &kp A &kp S &kp K &kp SPACE &to 0>;
         };
         tl: talosctl {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp T &kp A &kp L &kp O &kp S &kp C &kp T &kp L &kp SPACE>;
+            bindings = <&kp T &kp A &kp L &kp O &kp S &kp C &kp T &kp L &kp SPACE &to 0>;
         };
         fgr: flux_get_hr {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp F &kp L &kp U &kp X &kp SPACE &kp G &kp E &kp T &kp SPACE &kp H &kp R &kp SPACE &kp KP_MINUS &kp N &kp SPACE>;
+            bindings = <&kp F &kp L &kp U &kp X &kp SPACE &kp G &kp E &kp T &kp SPACE &kp H &kp R &kp SPACE &kp KP_MINUS &kp N &kp SPACE &to 0>;
         };
         fgk: flux_get_ks {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp F &kp L &kp U &kp X &kp SPACE &kp G &kp E &kp T &kp SPACE &kp K &kp S &kp SPACE>;
+            bindings = <&kp F &kp L &kp U &kp X &kp SPACE &kp G &kp E &kp T &kp SPACE &kp K &kp S &kp SPACE &to 0>;
         };
         kk: k9s {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp K &kp 9 &kp S>;
+            bindings = <&kp K &kp 9 &kp S &kp ENTER &to 0>;
         };
         kg: kubectl_get {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp K &kp U &kp B &kp E &kp C &kp T &kp L &kp SPACE &kp G &kp E &kp T &kp SPACE &kp KP_MINUS &kp N &kp SPACE &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp SPACE>;
+            bindings = <&kp K &kp U &kp B &kp E &kp C &kp T &kp L &kp SPACE &kp G &kp E &kp T &kp SPACE &kp KP_MINUS &kp N &kp SPACE &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp SPACE &to 0>;
         };
         ke: kubectl_edit {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp K &kp U &kp B &kp E &kp C &kp T &kp L &kp SPACE &kp E &kp D &kp I &kp T &kp SPACE &kp KP_MINUS &kp N &kp SPACE &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp SPACE>;
+            bindings = <&kp K &kp U &kp B &kp E &kp C &kp T &kp L &kp SPACE &kp E &kp D &kp I &kp T &kp SPACE &kp KP_MINUS &kp N &kp SPACE &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp SPACE &to 0>;
         };
         kx: kubectl_exec {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp K &kp U &kp B &kp E &kp C &kp T &kp L &kp SPACE &kp E &kp X &kp E &kp C &kp SPACE &kp KP_MINUS &kp I &kp T &kp SPACE &kp KP_MINUS &kp N &kp SPACE &kp KP_MINUS &kp KP_MINUS &kp SPACE &kp B &kp A &kp S &kp H &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp SPACE>;
+            bindings = <&kp K &kp U &kp B &kp E &kp C &kp T &kp L &kp SPACE &kp E &kp X &kp E &kp C &kp SPACE &kp KP_MINUS &kp I &kp T &kp SPACE &kp KP_MINUS &kp N &kp SPACE &kp KP_MINUS &kp KP_MINUS &kp SPACE &kp B &kp A &kp S &kp H &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp SPACE &to 0>;
         };
     };
 };
