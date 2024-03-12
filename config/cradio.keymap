@@ -111,13 +111,13 @@
             //│  Q       │  W       │  F       │  P       │  G       │   │  J       │  L       │  U       │  Y       │ '"       │
                 &kp Q      &kp W      &kp F      &kp P      &kp G          &kp J      &kp L      &kp U      &kp Y      &mmsa
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│  A       │  R       │  S       │  T       │  V       │   │  H       │  N       │  E       │  I       │  O       │
-                &mmat      &kp R      &kp S      &kp T     &lt TERM V      &kp H      &kp N      &kp E      &kp I      &kp O
+            //│  A       │  R       │  S       │  T       │  D       │   │  H       │  N       │  E       │  I       │  O       │
+                &mmat      &kp R      &kp S      &kp T     &lt TERM D      &kp H      &kp N      &kp E      &kp I      &kp O
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│  Z       │  X       │  C       │  D       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
-               &ltz FN Z &hm LCTRL X &hm RALT C &hm RGUI D &lt NAVI B     &kp K &hm LGUI M &hm LALT COMMA &hm LCTRL DOT &kp FSLH
+            //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
+               &ltz FN Z &hm LCTRL X &hm RALT C &hm RGUI V &lt NAVI B     &kp K &hm LGUI M &hm LALT COMMA &hm LCTRL DOT &kp FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                          &esc LCTRL ESC &mt LSHFT SPACE &rm RALT R &lt2 NUM NUM // esc gets thumb because of vim and as a safe key to verify layer 0
+                                           &esc LCTRL ESC &mt LSHFT SPACE &rm RALT R &mo NUM // esc gets thumb because of vim and as a safe key to verify layer 0
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
