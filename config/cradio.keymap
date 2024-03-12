@@ -15,10 +15,11 @@
 #define NAVI 2
 #define FN 3
 #define TERM 4
-#define K 5
-#define F 6
-#define FG 7
-#define T 8
+// macro layers
+#define MK 5
+#define MF 6
+#define MFG 7
+#define MT 8
 
 &mt {
     bindings = <&sk>, <&kp>;
@@ -172,13 +173,13 @@
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
             //│  Q       │  W       │  F       │  P       │  B       │   │  J       │  L       │  U       │  Y       │ '"       │
-                &trans     &trans     &to F      &trans     &trans         &trans     &ls        &trans     &trans     &trans
+                &trans     &trans     &to MF     &trans     &trans         &trans     &ls        &trans     &trans     &trans
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  A       │  R       │  S       │  T       │  G       │   │  M       │  N       │  E       │  I       │  O       │
-                &trans     &trans     &trans     &to T      &trans         &trans     &nvim      &trans     &trans     &trans
+                &trans     &trans     &trans     &to MT     &trans         &trans     &nvim      &trans     &trans     &trans
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  Z       │  X       │  C       │  D       │  V       │   │  K       │  H       │  ,<      │  .>      │  /?      │
-                &trans     &trans     &trans     &trans     &trans         &to K      &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans     &trans         &to MK     &trans     &trans     &trans     &trans
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                                  &to 0      &trans         &trans     &to TERM
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
@@ -207,7 +208,7 @@
                 &trans     &trans     &trans     &trans     &trans         &trans     &trans     &trans     &trans     &trans
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  A       │  R       │  S       │  T       │  G       │   │  M       │  N       │  E       │  I       │  O       │
-                &trans     &trans     &trans     &trans     &to FG         &trans     &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans     &to MFG        &trans     &trans     &trans     &trans     &trans
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  Z       │  X       │  C       │  D       │  V       │   │  K       │  H       │  ,<      │  .>      │  /?      │
                 &trans     &trans     &trans     &trans     &trans         &trans     &trans     &trans     &trans     &trans
