@@ -36,7 +36,7 @@
         /omit-if-no-ref/ mmsa: mod_morph_delete_semicolon {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp APOSTROPHE>, <&kp SEMICOLON>;
+            bindings = <&kp SEMICOLON>, <&kp APOSTROPHE>;
             mods = <(MOD_RALT)>;
         };
         /omit-if-no-ref/ mmat: mod_morph_a_tab {
@@ -90,8 +90,8 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
-            tapping-term-ms = <200>;
-            require-prior-idle-ms = <100>;
+            tapping-term-ms = <150>;
+            require-prior-idle-ms = <75>;
             bindings = <&mo>, <&mmzd>;
         };
         /omit-if-no-ref/ hm: homerow_mods {
@@ -108,8 +108,8 @@
         default_layer {
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            //│  Q       │  W       │  F       │  P       │  G       │   │  J       │  L       │  U       │  Y       │ BSPC     │
-                &kp Q      &kp W      &kp F      &kp P      &kp G          &kp J      &kp L      &kp U      &kp Y      &kp BSPC
+            //│  Q       │  W       │  F       │  P       │  G       │   │  J       │  L       │  U       │  Y       │ ;:'"     │
+                &kp Q      &kp W      &kp F      &kp P      &kp G          &kp J      &kp L      &kp U      &kp Y      &mmsa
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  A       │  R       │  S       │  T       │  D       │   │  H       │  N       │  E       │  I       │  O       │
                 &mmat      &kp R      &kp S      &kp T     &lt TERM D      &kp H      &kp N      &kp E      &kp I      &kp O
@@ -117,7 +117,7 @@
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
                &ltz FN Z &hm LCTRL X &hm RALT C &hm RGUI V &lt NAVI B     &kp K &hm LGUI M &hm LALT COMMA &hm LCTRL DOT &kp FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                          &esc LCTRL ESC &mt LSHFT SPACE &mt LSHFT SPACE &mo NUM
+                                           &esc LCTRL ESC &mt LSHFT SPACE &mt RALT BSPC &mo NUM
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             // TODO: repeat key on outer right thumb once used to rolling
             // esc gets thumb cuz vim & as safe key to verify layer 0
@@ -126,8 +126,8 @@
         num_layer {
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            //│ `~       │  1       │  2       │  3       │  =+      │   │ ;:       │ [{       │ ]}       │ \|       │ '"       │
-                &kp GRAVE  &kp N1     &kp N2     &kp N3     &kp EQUAL      &kp SEMI   &kp LBKT   &kp RBKT   &kp BSLH   &mmsa
+            //│ `~       │  1       │  2       │  3       │  =+      │   │ '"       │ [{       │ ]}       │ \|       │ BSPC     │
+                &kp GRAVE  &kp N1     &kp N2     &kp N3     &kp EQUAL      &kp APOS   &kp LBKT   &kp RBKT   &kp BSLH   &kp BSPC
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ TAB      │  4       │  5       │  6       │  0       │   │ TAB      │ LEFT     │ DOWN     │ UP       │ RIGHT    │
                 &kp TAB    &kp N4     &kp N5     &kp N6     &kp N0         &kp TAB    &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT
