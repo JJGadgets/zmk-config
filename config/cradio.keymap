@@ -108,8 +108,8 @@
         default_layer {
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            //│  Q       │  W       │  F       │  P       │  G       │   │  J       │  L       │  U       │  Y       │ '"       │
-                &kp Q      &kp W      &kp F      &kp P      &kp G          &kp J      &kp L      &kp U      &kp Y      &mmsa
+            //│  Q       │  W       │  F       │  P       │  G       │   │  J       │  L       │  U       │  Y       │ BSPC     │
+                &kp Q      &kp W      &kp F      &kp P      &kp G          &kp J      &kp L      &kp U      &kp Y      &kp BSPC
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  A       │  R       │  S       │  T       │  D       │   │  H       │  N       │  E       │  I       │  O       │
                 &mmat      &kp R      &kp S      &kp T     &lt TERM D      &kp H      &kp N      &kp E      &kp I      &kp O
@@ -117,15 +117,16 @@
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
                &ltz FN Z &hm LCTRL X &hm RALT C &hm RGUI V &lt NAVI B     &kp K &hm LGUI M &hm LALT COMMA &hm LCTRL DOT &kp FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                           &esc LCTRL ESC &mt LSHFT SPACE &rm RALT R &mo NUM // esc gets thumb because of vim and as a safe key to verify layer 0
+                                          &esc LCTRL ESC &mt LSHFT SPACE &mt LSHFT SPACE &mo NUM 
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+            // TODO: repeat key on outer right thumb once used to rolling // esc gets thumb cuz vim & as safe key to verify layer 0
             >;
         };
         num_layer {
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            //│ `~       │  1       │  2       │  3       │  =+      │   │ ;:       │ [{       │ ]}       │ \|       │ BSPC     │
-                &kp GRAVE  &kp N1     &kp N2     &kp N3     &kp EQUAL      &kp SEMI   &kp LBKT   &kp RBKT   &kp BSLH   &kp BSPC
+            //│ `~       │  1       │  2       │  3       │  =+      │   │ ;:       │ [{       │ ]}       │ \|       │ '"       │
+                &kp GRAVE  &kp N1     &kp N2     &kp N3     &kp EQUAL      &kp SEMI   &kp LBKT   &kp RBKT   &kp BSLH   &mmsa
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ TAB      │  4       │  5       │  6       │  0       │   │ TAB      │ LEFT     │ DOWN     │ UP       │ RIGHT    │
                 &kp TAB    &kp N4     &kp N5     &kp N6     &kp N0         &kp TAB    &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT
@@ -173,7 +174,7 @@
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
             //│  Q       │  W       │  F       │  P       │  B       │   │  J       │  L       │  U       │  Y       │ '"       │
-                &trans     &trans     &to MF     &trans     &trans         &trans     &ls        &trans     &trans     &trans
+                &trans     &trans     &to MF     &trans     &trans         &tech      &ls        &trans     &trans     &trans
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  A       │  R       │  S       │  T       │  G       │   │  M       │  N       │  E       │  I       │  O       │
                 &trans     &trans     &trans     &to MT     &trans         &trans     &nvim      &trans     &trans     &trans
@@ -262,5 +263,5 @@
         ZMK_MACRO(kg, bindings = <&kp K &kp U &kp B &kp E &kp C &kp T &kp L &kp SPACE &kp G &kp E &kp T &kp SPACE &kp KP_MINUS &kp N &kp SPACE &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp SPACE &to 0>;) // kubectl get -n
         ZMK_MACRO(ke, bindings = <&kp K &kp U &kp B &kp E &kp C &kp T &kp L &kp SPACE &kp E &kp D &kp I &kp T &kp SPACE &kp KP_MINUS &kp N &kp SPACE &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp SPACE &to 0>;) // kubectl edit -n
         ZMK_MACRO(kx, bindings = <&kp K &kp U &kp B &kp E &kp C &kp T &kp L &kp SPACE &kp E &kp X &kp E &kp C &kp SPACE &kp KP_MINUS &kp I &kp T &kp SPACE &kp KP_MINUS &kp N &kp SPACE &kp KP_MINUS &kp KP_MINUS &kp SPACE &kp B &kp A &kp S &kp H &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp SPACE &to 0>;) // kubectl exec -it -n
-    };
+        ZMK_MACRO(tech, bindings = <&kp J &kp J &kp G &kp A &kp D &kp G &kp E &kp T &kp S &kp KP_DOT &kp T &kp E &kp C &kp H>;)
 };
