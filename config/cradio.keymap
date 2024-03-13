@@ -117,9 +117,10 @@
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
                &ltz FN Z &hm LCTRL X &hm RALT C &hm RGUI V &lt NAVI B     &kp K &hm LGUI M &hm LALT COMMA &hm LCTRL DOT &kp FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                          &esc LCTRL ESC &mt LSHFT SPACE &mt LSHFT SPACE &mo NUM 
+                                          &esc LCTRL ESC &mt LSHFT SPACE &mt LSHFT SPACE &mo NUM
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
-            // TODO: repeat key on outer right thumb once used to rolling // esc gets thumb cuz vim & as safe key to verify layer 0
+            // TODO: repeat key on outer right thumb once used to rolling
+            // esc gets thumb cuz vim & as safe key to verify layer 0
             >;
         };
         num_layer {
@@ -174,7 +175,7 @@
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
             //│  Q       │  W       │  F       │  P       │  B       │   │  J       │  L       │  U       │  Y       │ '"       │
-                &trans     &trans     &to MF     &trans     &trans         &trans     &ls        &trans     &trans     &trans
+                &trans     &trans     &to MF     &trans     &trans         &tech      &ls        &trans     &trans     &trans
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  A       │  R       │  S       │  T       │  G       │   │  M       │  N       │  E       │  I       │  O       │
                 &trans     &trans     &trans     &to MT     &trans         &trans     &nvim      &trans     &trans     &trans
@@ -263,5 +264,5 @@
         ZMK_MACRO(kg, bindings = <&kp K &kp U &kp B &kp E &kp C &kp T &kp L &kp SPACE &kp G &kp E &kp T &kp SPACE &kp KP_MINUS &kp N &kp SPACE &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp SPACE &to 0>;) // kubectl get -n
         ZMK_MACRO(ke, bindings = <&kp K &kp U &kp B &kp E &kp C &kp T &kp L &kp SPACE &kp E &kp D &kp I &kp T &kp SPACE &kp KP_MINUS &kp N &kp SPACE &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp SPACE &to 0>;) // kubectl edit -n
         ZMK_MACRO(kx, bindings = <&kp K &kp U &kp B &kp E &kp C &kp T &kp L &kp SPACE &kp E &kp X &kp E &kp C &kp SPACE &kp KP_MINUS &kp I &kp T &kp SPACE &kp KP_MINUS &kp N &kp SPACE &kp KP_MINUS &kp KP_MINUS &kp SPACE &kp B &kp A &kp S &kp H &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp SPACE &to 0>;) // kubectl exec -it -n
-        //ZMK_MACRO(tech, bindings = <&kp J &kp J &kp G &kp A &kp D &kp G &kp E &kp T &kp S &kp KP_DOT &kp T &kp E &kp C &kp H>;)
+        ZMK_MACRO(tech, bindings = <&kp J &kp J &kp G &kp A &kp D &kp G &kp E &kp T &kp S &kp KP_DOT &kp T &kp E &kp C &kp H>;)
 };
