@@ -23,12 +23,11 @@
 #define MFG 9
 #define MT 10
 
-#define EMPTYLAYER <
-    &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans
-    &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans
-    &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans
+#define EMPTYLAYER \
+    &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans \
+    &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans \
+    &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans \
                          &trans &trans  &trans &trans
->
 
 &mt {
     bindings = <&sk>, <&kp>;
@@ -180,8 +179,8 @@
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
-        num_hold_layer { bindings = EMPTYLAYER; };
-        num_lock_layer { bindings = EMPTYLAYER; };
+        num_hold_layer { bindings = <EMPTYLAYER>; };
+        num_lock_layer { bindings = <EMPTYLAYER>; };
         navi_layer {
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
