@@ -25,6 +25,7 @@
 #define MF 8
 #define MFG 9
 #define MT 10
+#define LOCK 11
 
 #define EMPTYLAYER \
     &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans \
@@ -49,6 +50,8 @@
 
 / {
     behaviors {
+        JJ_MM(unlock, unlock, mods = <(MOD_RSFT)>; bindings = <&none>, <&unlockdance>;)
+        JJ(unlockdance, unlock_dance, "zmk,behavior-tap-dance", 0, tapping-term-ms = <200>; bindings = <&none>, <&none>, <&to 0>;)
         JJ_MM(mmsc, mod_morph_semicolon, mods = <(MOD_LSFT)>; bindings = <&kp COLON>, <&kp SEMICOLON>;)
         JJ_MM(mmsa, mod_morph_delete_semicolon, mods = <(MOD_RALT)>; bindings = <&mmsc>, <&kp APOSTROPHE>;)
         JJ_MM(mmgrave, mod_morph_grave, mods = <(MOD_LSFT)>; bindings = <&kp TILDE>, <&kp GRAVE>;)
@@ -57,6 +60,7 @@
         JJ_MM(mmec, mod_morph_esc_caps, mods = <(MOD_LSFT)>; bindings = <&kp ESC>, <&caps_word>;)
         JJ_HT_HOLD(esc, esc_ctrl, bindings = <&kp>, <&mmec>;)
         JJ_HT_HOLD(rm, repeat_mod, bindings = <&kp>, <&key_repeat>;)
+        JJ_HT_HOLD(rl, repeat_layer, bindings = <&mo>, <&key_repeat>;)
         JJ_HT_HOLD(mto, mod_tap_to_layer, bindings = <&sk>, <&to>;)
         JJ_HT_HOLD(mtog, mod_tap_toggle_layer, bindings = <&sk>, <&tog>;)
         JJ_HT_HOLD(lt2, layer_tap_2, bindings = <&mo>, <&to>;)
@@ -78,9 +82,8 @@
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
                &ltz FN Z &hm LCTRL X &hm RALT C &hm RGUI V &lt NAVI B     &kp K &hm LGUI M &hm LALT COMMA &hm LCTRL DOT &kp FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                           &esc LCTRL ESC &mt LSHFT SPACE &hm RALT BSPC &mo NUM
+                                           &esc LCTRL ESC &mt LSHFT SPACE &hm RALT BSPC &rl NUM R
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
-            // TODO: repeat key on outer right thumb once used to rolling
             // esc gets thumb cuz vim & as safe key to verify layer 0
             >;
         };
@@ -130,7 +133,7 @@
             //│ LCTRL    │ LALT     │ LGUI     │ F11      │ F12      │   │ F23      │ F24      │ RGUI     │ RALT     │ RCTRL    │
                 &kp LCTRL  &kp LALT   &kp LGUI   &kp F11    &kp F12        &kp F23    &kp F24    &kp RGUI   &kp RALT   &kp RCTRL // TODO: meh key
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &to 0      &trans         &trans     &trans //&to GAME
+                                                 &to 0      &to LOCK       &trans     &trans //&to GAME
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -212,6 +215,14 @@
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                                  &to 0      &trans         &trans     &trans
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+            >;
+        };
+        lock_layer {
+            bindings = <
+                &none &none &none &none &none  &none &none &none &none &none
+                &none &none &none &none &none  &none &none &none &none &none
+                &none &none &none &none &none  &none &none &none &none &none
+                                &unlock &none  &none &kp RSHFT
             >;
         };
 	// TODO: mouse layer

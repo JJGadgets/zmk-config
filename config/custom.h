@@ -1,8 +1,8 @@
 // vi: ft=c
-#define JJ(name,desc,compat,cells,...) \
+#define JJ(name,desc,compat,cellsnum,...) \
 /omit-if-no-ref/ name: desc { \
     compatible = compat; \
-    #binding-cells = <cells>; \
+    #binding-cells = <cellsnum>; \
     __VA_ARGS__ \
 };
 
