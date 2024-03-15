@@ -242,3 +242,12 @@
         };
     };
 };
+
+&kscan0 {
+    // eager debouncing
+    debounce-press-ms = <0>;
+    debounce-release-ms = <6>;
+    // increasing scan period, *might* reduce power use...?
+    // TODO: set press to 0 and scan to 3, verify power
+    debounce-scan-period-ms = <3>;
+};
