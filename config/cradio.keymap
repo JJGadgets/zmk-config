@@ -14,19 +14,21 @@
 
 // Layers name to integer definition
 #define DEFAULT 0
-#define NUM_KEYS 1
+#define LNUM 1
 #define NUM 2
 #define NUM_LOCK 3
-#define NAVI 4
-#define FN 5
-#define TERM 6
+#define RNAV 4
+#define LNAV 5
+#define FN 6
+#define GAME 7
+#define TERM 8
 // macro layers
-#define MK 7
-#define MF 8
-#define MFG 9
-#define MT 10
-#define MGIT 11
-#define LOCK 12
+#define MK 9
+#define MF 10
+#define MFG 11
+#define MT 12
+#define MGIT 13
+#define LOCK 14
 
 #define EMPTYLAYER \
     &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans \
@@ -65,6 +67,7 @@
         JJ_MM(mmzd, mod_morph_z_delete, mods = <(MOD_RALT)>; bindings = <&kp Z>, <&kp DEL>;)
         JJ_HT_TAP(ltz, layer_tap_z, bindings = <&mo>, <&mmzd>;)
         JJ_HT_TAP(hm, homerow_mods, bindings = <&kp>, <&kp>;)
+        JJ_TD(numdot, num_layer_dot, <&kp DOT>, <&none>, <&kp LC(LA(DEL))>, <&tog GAME>)
     };
     keymap {
         compatible = "zmk,keymap";
@@ -78,21 +81,21 @@
                 &mmat      &kp R      &kp S      &kp T     &lt TERM D      &kp H      &kp N      &kp E      &kp I      &kp O
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
-               &ltz FN Z &hm LCTRL X &hm RALT C &hm RGUI V &lt NAVI B     &kp K &hm LGUI M &hm LALT COMMA &hm LCTRL DOT &kp FSLH
+               &ltz FN Z &hm LCTRL X &hm RALT C &hm RGUI V &lt LNAV B     &kp K &hm LGUI M &hm LALT COMMA &hm LCTRL DOT &kp FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                           &esc LCTRL ESC &mt LSHFT SPACE &hm RALT BSPC &rl NUM R
+                                           &esc LCTRL SPACE &mt LSHFT ESC &hm RALT BSPC &rl NUM R
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             // esc gets thumb cuz vim & as safe key to verify layer 0
             >;
         };
         num_layer {
-            bindings = <
+            bindings = < // TODO: decide whether to split this or not
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
             //│ `~       │  1       │  2       │  3       │  \|      │   │ [{       │ ]}       │ -_       │ =+       │ '"       │
                 &mmgrave   &kp N1     &kp N2     &kp N3     &kp BSLH       &kp LBKT   &kp RBKT   &kp MINUS  &kp EQUAL  &kp APOS
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│ TAB      │  4       │  5       │  6       │  0       │   │ TAB      │ LEFT     │ DOWN     │ UP       │ RIGHT    │
-                &kp TAB    &kp N4     &kp N5     &kp N6 &kp LC(LA(DEL))    &kp TAB    &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT
+            //│ TAB      │  4       │  5       │  6       │  .       │   │ TAB      │ LEFT     │ DOWN     │ UP       │ RIGHT    │
+                &kp TAB    &kp N4     &kp N5     &kp N6     &numdot        &kp TAB    &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ DELETE   │  7       │  8       │  9       │  0       │   │ PSCRN    │ HOME     │ PG_UP    │ PG_DN    │ END      │
                 &kp DEL    &kp N7     &kp N8     &kp N9     &kp N0         &kp PSCRN  &kp HOME   &kp PG_UP &kp PG_DN   &kp END
@@ -103,14 +106,30 @@
         };
         num_hold_layer { bindings = <EMPTYLAYER>; };
         num_lock_layer { bindings = <EMPTYLAYER>; };
-        navi_layer {
+        right_navi_layer {
+            bindings = <
+            //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
+            //│ `~       │  1       │  2       │  3       │  \|      │   │ [{       │ ]}       │ -_       │ =+       │ '"       │
+                &trans     &trans     &trans     &trans     &trans         &kp LBKT   &kp RBKT   &kp MINUS  &kp EQUAL  &kp APOS
+            //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+            //│ TAB      │  4       │  5       │  6       │  0       │   │ TAB      │ LEFT     │ DOWN     │ UP       │ RIGHT    │
+                &trans     &trans     &trans     &trans     &trans         &kp TAB    &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT
+            //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+            //│ DELETE   │  7       │  8       │  9       │  0       │   │ PSCRN    │ HOME     │ PG_UP    │ PG_DN    │ END      │
+                &trans     &trans     &trans     &trans     &trans         &kp PSCRN  &kp HOME   &kp PG_UP &kp PG_DN   &kp END
+            //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
+                                                 &trans     &trans        &mt RALT ENTER &to FN
+            //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+            >;
+        };
+        left_navi_layer {
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
             //│ `~ESC    │ PREV SONG│PLAY/PAUSE│ NEXT SONG│ PSCRN    │   │          │          │          │          │          │
                 &gresc    &kp C_PREV  &kp C_PP  &kp C_NEXT  &kp PSCRN &kp C_MUTE &kp C_VOL_DN &kp C_VOL_UP &kp C_BRI_DN &kp C_BRI_UP
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ LEFT     │ DOWN     │ UP       │ RIGHT    │ Num Layer│   │          │TODO:BTDSC│          │          │          │
-                &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &to FN     &out OUT_TOG &bt BT_CLR &bt BT_PRV &bt BT_NXT &ext_power EP_TOG
+                &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &tog LNUM  &out OUT_TOG &bt BT_CLR &bt BT_PRV &bt BT_NXT &ext_power EP_TOG
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ HOME     │ PG_DN    │ PG_UP    │ END      │          │   │          │          │          │          │          │
                 &kp HOME  &kp PG_DN   &kp PG_UP  &kp END    &trans    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
@@ -133,6 +152,27 @@
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                                  &to 0      &to LOCK       &trans     &trans //&to GAME
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+            >;
+        };
+        game_layer {
+            bindings = <
+            // NOTE: This is suited to my gaming habits.
+            // I don't ever bind anything to D (QWERTY's G) so that I don't accidentally fat finger T (QWERTY's F) and throw a grenade.
+            // I want the row stagger of the middle 3 rows for WASD as the leftmost 3 rows is awkward, 
+            // and I want pinky to be used for things other than sprint, thus the shift of the first 2 rows by 1 column to the right.
+            //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
+            //│  TAB     │  Q       │  W       │  F       │  P       │   │  J       │  L       │  U       │  Y       │ ;:'"     │
+                &kp TAB    &mmqgr     &kp W      &kp F      &kp P          &trans     &trans     &trans     &trans     &trans
+            //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+            //│  G       │  A       │  R       │  S       │  T       │   │  H       │  N       │  E       │  I       │  O       │
+                &kp G      &kp A      &kp R      &kp S      &kp T          &trans     &trans     &trans     &trans     &trans
+            //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+            //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
+                &kp Z      &kp X      &kp C      &kp V      &kp B          &trans     &trans     &trans     &trans     &trans
+            //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
+                                            &hm LCTRL SPACE &kp LSHFT      &trans     &trans
+            //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+            // esc gets thumb cuz vim & as safe key to verify layer 0
             >;
         };
         term_layer {
@@ -246,7 +286,7 @@
         ZMK_MACRO(ls, bindings = <&kp L &kp S &kp SPACE &kp KP_MINUS>, <&macro_press &kp LSHFT>, <&kp A>, <&macro_release &kp LSHFT>, <&kp L &kp H &kp SPACE &to 0>;)
         ZMK_MACRO(task, bindings = <&kp T &kp A &kp S &kp K &kp SPACE &to 0>;)
         ZMK_MACRO(talos, bindings = <&kp T &kp A &kp L &kp O &kp S &kp C &kp T &kp L &kp SPACE &to 0>;) // talosctl
-        ZMK_MACRO(tech, bindings = <&kp J &kp J &kp G &kp A &kp D &kp G &kp E &kp T &kp S &kp KP_DOT &kp T &kp E &kp C &kp H &to 0>;) // jjgadgets.tech
+        ZMK_MACRO(tech, bindings = <&kp J &kp J &kp G &kp A &kp D &kp G &kp E &kp T &kp S &kp DOT &kp T &kp E &kp C &kp H &to 0>;) // jjgadgets.tech
         ZMK_MACRO(gita, bindings = <&kp G &kp I &kp T &kp SPACE &kp A &kp D &kp D &kp SPACE &to 0>;) // git add
         ZMK_MACRO(gitc, bindings = <&kp G &kp I &kp T &kp SPACE &kp C &kp O &kp M &kp M &kp I &kp T &kp SPACE &kp KP_MINUS &kp KP_MINUS &kp G &kp P &kp G &kp KP_MINUS &kp S &kp I &kp G &kp N &kp SPACE &kp KP_MINUS &kp M &kp SPACE &kp DOUBLE_QUOTES &kp DOUBLE_QUOTES &kp LEFT &kp SPACE &to 0>;) // git add
         ZMK_MACRO(gitps, bindings = <&kp G &kp I &kp T &kp SPACE &kp P &kp U &kp S &kp H &to 0>;)
@@ -261,13 +301,17 @@
     conditional_layers {
         compatible = "zmk,conditional-layers";
         // layer lock
-        num_hold {
+        num_hold_left {
             if-layers = <NUM>;
-            then-layer = <NUM_KEYS>;
+            then-layer = <LNUM>;
         };
+        //num_hold_right {
+        //    if-layers = <NUM>;
+        //    then-layer = <RNAV>;
+        //};
         num_lock {
             if-layers = <NUM_LOCK>;
-            then-layer = <NUM_KEYS>;
+            then-layer = <LNUM>;
         };
     };
 };
