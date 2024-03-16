@@ -46,5 +46,5 @@
     compatible = "zmk,behavior-tap-dance"; \
     #binding-cells = <0>; \
     tapping-term-ms = <200>; \
-    bindings = __VA_ARGS__ \
+    bindings = __VA_ARGS__; \
 };
