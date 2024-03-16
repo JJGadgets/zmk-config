@@ -40,3 +40,11 @@
     require-prior-idle-ms = <150>; \
     __VA_ARGS__ \
 };
+
+#define JJ_TD(name,desc,...) \
+/omit-if-no-ref/ name: desc { \
+    compatible = "zmk,behavior-tap-dance"; \
+    #binding-cells = <0>; \
+    tapping-term-ms = <200>; \
+    bindings = __VA_ARGS__ \
+};
