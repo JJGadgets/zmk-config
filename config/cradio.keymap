@@ -53,7 +53,8 @@
         JJ_MM(unlock, unlock, mods = <(MOD_RSFT)>; bindings = <&none>, <&unlockdance>;)
         JJ(unlockdance, unlock_dance, "zmk,behavior-tap-dance", 0, tapping-term-ms = <200>; bindings = <&none>, <&none>, <&to 0>;)
         JJ_MM(mmsc, mod_morph_semicolon, mods = <(MOD_LSFT)>; bindings = <&kp COLON>, <&kp SEMICOLON>;)
-        JJ_MM(mmsa, mod_morph_delete_semicolon, mods = <(MOD_RALT)>; bindings = <&mmsc>, <&kp APOSTROPHE>;)
+        JJ_MM(mmsa, mod_morph_semicolon_apostrophe, mods = <(MOD_RALT)>; bindings = <&mmsc>, <&kp DOUBLE_QUOTES>;)
+        JJ_MM(mmoe, mod_morph_o_enter, mods = <(MOD_RALT)>; bindings = <&kp O>, <&kp ENTER>;)
         JJ_MM(mmgrave, mod_morph_grave, mods = <(MOD_LSFT)>; bindings = <&kp TILDE>, <&kp GRAVE>;)
         JJ_MM(mmqgr, mod_morph_q_grave, mods = <(MOD_RALT)>; bindings = <&kp Q>, <&mmgrave>;)
         JJ_MM(mmat, mod_morph_a_tab, mods = <(MOD_RALT|MOD_RGUI)>; keep-mods = <(MOD_RALT|MOD_RGUI)>; bindings = <&kp A>, <&kp TAB>;)
@@ -61,7 +62,7 @@
         JJ_HT_HOLD(caps, caps_word_hold, bindings = <&kp>, <&mmcw>;)
         JJ_HT_HOLD(spc, space_shift, retro-tap; hold-while-undecided; bindings = <&kp>, <&kp>;)
         JJ_HT_HOLD(rm, repeat_mod, bindings = <&kp>, <&key_repeat>;)
-        JJ_HT_HOLD(rl, repeat_layer, bindings = <&mo>, <&key_repeat>;)
+        JJ_HT_HOLD(rl, repeat_layer, hold-while-undecided; bindings = <&mo>, <&key_repeat>;)
         JJ_HT_HOLD(mto, mod_tap_to_layer, bindings = <&sk>, <&to>;)
         JJ_HT_HOLD(mtog, mod_tap_toggle_layer, bindings = <&sk>, <&tog>;)
         JJ_HT_HOLD(lt2, layer_tap_2, bindings = <&mo>, <&to>;)
@@ -69,17 +70,38 @@
         JJ_HT_TAP(ltz, layer_tap_z, bindings = <&mo>, <&mmzd>;)
         JJ_HT_TAP(hm, homerow_mods, bindings = <&kp>, <&kp>;)
         JJ_TD(numdot, num_layer_dot, <&kp DOT>, <&none>, <&kp LC(LA(DEL))>, <&tog GAME>)
+        JJ_MM(mmctrlspc, mod_morph_ctrl_space, mods = <(MOD_LSFT)>; bindings = <&kp SPACE>, <&kp LCTRL>;)
+    };
+    combos {
+        compatible = "zmk,combos";
+        game_ctrl {
+            timeout-ms = <50>;
+            key-positions = <10 31>; // left outer thumb + A (default) or G (gaming)
+            bindings = <&kp LCTRL>;
+            layers = <GAME>;
+        };
+        game_d {
+            timeout-ms = <50>;
+            key-positions = <14 31>; // left outer thumb + D (default) or T (gaming)
+            bindings = <&kp D>;
+            layers = <GAME>;
+        };
+	combo_enter { // safety net to prevent activating backspace before hold-tap registers hold
+            timeout-ms = <50>;
+            key-positions = <19 32>; // right outer thumb + O key
+            bindings = <&kp ENTER>;
+	};
     };
     keymap {
         compatible = "zmk,keymap";
         default_layer {
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            //│  Q       │  W       │  F       │  P       │  G       │   │  J       │  L       │  U       │  Y       │ ;:'"     │
+            //│  Q       │  W       │  F       │  P       │  G       │   │  J       │  L       │  U       │  Y       │ :;"'     │
                 &mmqgr     &kp W      &kp F      &kp P      &kp G          &kp J      &kp L      &kp U      &kp Y      &mmsa
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  A       │  R       │  S       │  T       │  D       │   │  H       │  N       │  E       │  I       │  O       │
-                &mmat      &kp R      &kp S      &kp T     &lt TERM D      &kp H      &kp N      &kp E      &kp I      &kp O
+                &mmat      &kp R      &kp S      &kp T     &lt TERM D      &kp H      &kp N      &kp E      &kp I      &mmoe
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
                &ltz FN Z &hm LCTRL X &hm RALT C &hm RGUI V &lt LNAV B     &kp K &hm LGUI M &hm LALT COMMA &hm LCTRL DOT &kp FSLH
@@ -87,6 +109,7 @@
                                           &caps LCTRL ESC &spc LSHFT SPACE &hm RALT BSPC &rl NUM R
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             // esc gets thumb cuz vim & as safe key to verify layer 0
+	    // mmsa = tap for colon, shift for semicolon, RALT for double quotes, NUM layer for single quotes
             >;
         };
         num_layer {
@@ -169,9 +192,9 @@
                 &kp G      &kp A      &kp R      &kp S      &kp T          &trans     &trans     &trans     &trans     &trans
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
-                &kp Z      &kp X      &kp C      &kp V      &kp B          &trans     &trans     &trans     &trans     &trans
+                &kp Z      &kp X      &kp C      &kp V      &trans         &trans     &trans     &trans     &trans     &trans
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                            &hm LCTRL SPACE &kp LSHFT      &trans     &to 0
+                                                 &mmctrlspc &kp LSHFT      &trans     &lt2 NUM 0
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             // esc gets thumb cuz vim & as safe key to verify layer 0
             >;
