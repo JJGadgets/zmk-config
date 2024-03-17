@@ -57,7 +57,7 @@
         JJ_MM(mmgrave, mod_morph_grave, mods = <(MOD_LSFT)>; bindings = <&kp TILDE>, <&kp GRAVE>;)
         JJ_MM(mmqgr, mod_morph_q_grave, mods = <(MOD_RALT)>; bindings = <&kp Q>, <&mmgrave>;)
         JJ_MM(mmat, mod_morph_a_tab, mods = <(MOD_RALT|MOD_RGUI)>; keep-mods = <(MOD_RALT|MOD_RGUI)>; bindings = <&kp A>, <&kp TAB>;)
-        JJ_MM(mmcw, mod_morph_caps_word, mods = <(MOD_LSFT)>; bindings = <&kp SPACE>, <&caps_word>;)
+        JJ_MM(mmcw, mod_morph_caps_word, mods = <(MOD_LSFT)>; bindings = <&kp ESC>, <&caps_word>;)
         JJ_HT_HOLD(caps, caps_word_hold, bindings = <&kp>, <&mmcw>;)
         JJ_HT_HOLD(spc, space_shift, retro-tap; hold-while-undecided; bindings = <&kp>, <&kp>;)
         JJ_HT_HOLD(rm, repeat_mod, bindings = <&kp>, <&key_repeat>;)
