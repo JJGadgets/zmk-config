@@ -57,8 +57,8 @@
         JJ_MM(mmgrave, mod_morph_grave, mods = <(MOD_LSFT)>; bindings = <&kp TILDE>, <&kp GRAVE>;)
         JJ_MM(mmqgr, mod_morph_q_grave, mods = <(MOD_RALT)>; bindings = <&kp Q>, <&mmgrave>;)
         JJ_MM(mmat, mod_morph_a_tab, mods = <(MOD_RALT|MOD_RGUI)>; keep-mods = <(MOD_RALT|MOD_RGUI)>; bindings = <&kp A>, <&kp TAB>;)
-        JJ_MM(mmec, mod_morph_esc_caps, mods = <(MOD_LSFT)>; bindings = <&kp ESC>, <&caps_word>;)
-        JJ_HT_HOLD(esc, esc_ctrl, bindings = <&kp>, <&mmec>;)
+        JJ_MM(mmcw, mod_morph_caps_word, mods = <(MOD_LSFT)>; bindings = <&kp SPACE>, <&caps_word>;)
+        JJ_HT_HOLD(caps, caps_word_hold, bindings = <&kp>, <&mmec>;)
         JJ_HT_HOLD(rm, repeat_mod, bindings = <&kp>, <&key_repeat>;)
         JJ_HT_HOLD(rl, repeat_layer, bindings = <&mo>, <&key_repeat>;)
         JJ_HT_HOLD(mto, mod_tap_to_layer, bindings = <&sk>, <&to>;)
@@ -83,7 +83,7 @@
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
                &ltz FN Z &hm LCTRL X &hm RALT C &hm RGUI V &lt LNAV B     &kp K &hm LGUI M &hm LALT COMMA &hm LCTRL DOT &kp FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                           &esc LCTRL SPACE &mt LSHFT ESC &hm RALT BSPC &rl NUM R
+                                          &caps LCTRL SPACE &mt LSHFT ESC &hm RALT BSPC &rl NUM R
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             // esc gets thumb cuz vim & as safe key to verify layer 0
             >;
