@@ -100,17 +100,21 @@
             timeout-ms = CFAST;
             key-positions = <12 13>; // S + T
             bindings = <&tog NUM_LOCK>;
+            layers = <0 LNUM NUM_LOCK>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
         };
       	combo_delete {
             timeout-ms = CFAST;
             key-positions = <20 21>; // Z + X
             bindings = <&kp DEL>;
             layers = <0>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
       	};
       	combo_enter {
             timeout-ms = CFAST;
             key-positions = <18 19>; // I + O
             bindings = <&kp ENTER>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
       	};
       	combo_enter_2 { // safety net to prevent activating backspace before hold-tap registers hold
             timeout-ms = CFAST;
@@ -122,6 +126,7 @@
             key-positions = <8 9>; // Y + :
             bindings = <&kp BSPC>;
             layers = <0>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
       	};
       	combo_left {
             timeout-ms = CFAST;
@@ -152,18 +157,21 @@
             key-positions = <7 8>; // U + Y
             bindings = <&kp EQUAL>;
             layers = <0>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
       	};
       	combo_hyphen {
             timeout-ms = CFAST;
             key-positions = <6 7>; // L + U
             bindings = <&kp MINUS>;
             layers = <0>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
       	};
       	combo_grave {
             timeout-ms = CSLOW;
             key-positions = <0 10>; // Q + A
             bindings = <&mmgrave>;
             layers = <0>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
       	};
     };
     keymap {

@@ -61,3 +61,24 @@ JJ_HM(name, desc, "balanced", __VA_ARGS__ \
     tapping-term-ms = <200>; \
     bindings = __VA_ARGS__; \
 };
+
+#define JJ_COMBO_ALL(name,cctime,ccpos,ccbind,...) \
+/ { \
+    combos { \
+        compatible = "zmk,combos"; \
+        name { \
+            timeout-ms = <cctime>; \
+            key-positions = <31 ccpos>; \
+            bindings = <&kp LS(ccbind)>; \
+            __VA_ARGS__ \
+        }; \
+    }; \
+}; \
+
+// thumb version which doesn't need require-prior-idle-ms
+#define JJ_COMBO_T(name,cctime,ccpos,ccbind,cclayer,...) \
+JJ_COMBO_ALL(name, cctime, ccpos, ccbind, layers = <cclayer>; __VA_ARGS__)
+
+#define JJ_COMBO_IDLE 150
+#define JJ_COMBO(name,cctime,ccpos,ccbind,cclayer,...) \
+JJ_COMBO_T(name, cctime, ccpos, ccbind, cclayer, require-prior-idle-ms = <JJ_COMBO_IDLE>; __VA_ARGS__)
