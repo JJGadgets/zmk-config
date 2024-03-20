@@ -11,6 +11,11 @@
 
 // my own code
 #include "custom.h"
+#include "caps-combos.dtsi"
+
+// timeouts
+#define CFAST <20>
+#define CSLOW <50>
 
 // Layers name to integer definition
 #define DEFAULT 0
@@ -52,7 +57,8 @@
     behaviors {
         JJ_MM(unlock, unlock, mods = <(MOD_RSFT)>; bindings = <&none>, <&unlockdance>;)
         JJ(unlockdance, unlock_dance, "zmk,behavior-tap-dance", 0, tapping-term-ms = <200>; bindings = <&none>, <&none>, <&to 0>;)
-        JJ_MM(mmsc, mod_morph_semicolon, mods = <(MOD_LSFT)>; bindings = <&kp COLON>, <&kp SEMICOLON>;)
+        JJ_TD(tdc, tap_dance_colon, <&kp COLON>, <&kp APOSTROPHE>, <&kp DOUBLE_QUOTES>, <&kp SEMICOLON>)
+        JJ_MM(mmsc, mod_morph_semicolon, mods = <(MOD_LSFT)>; bindings = <&tdc>, <&kp SEMICOLON>;)
         JJ_MM(mmsa, mod_morph_semicolon_apostrophe, mods = <(MOD_RALT)>; bindings = <&mmsc>, <&kp DOUBLE_QUOTES>;)
         JJ_MM(mmoe, mod_morph_o_enter, mods = <(MOD_RALT)>; bindings = <&kp O>, <&kp ENTER>;)
         JJ_MM(mmgrave, mod_morph_grave, mods = <(MOD_LSFT)>; bindings = <&kp TILDE>, <&kp GRAVE>;)
@@ -62,35 +68,103 @@
         JJ_HT_HOLD(caps, caps_word_hold, bindings = <&kp>, <&mmcw>;)
         JJ_HT_HOLD(spc, space_shift, retro-tap; hold-while-undecided; bindings = <&kp>, <&kp>;)
         JJ_HT_HOLD(rm, repeat_mod, bindings = <&kp>, <&key_repeat>;)
-        JJ_HT_HOLD(rl, repeat_layer, hold-while-undecided; bindings = <&mo>, <&key_repeat>;)
+        JJ_HT_HOLD(rl, repeat_layer, hold-while-undecided; quick-tap-ms = <150>; bindings = <&mo>, <&key_repeat>;) // allow hold repeat of repeat key
         JJ_HT_HOLD(mto, mod_tap_to_layer, bindings = <&sk>, <&to>;)
         JJ_HT_HOLD(mtog, mod_tap_toggle_layer, bindings = <&sk>, <&tog>;)
         JJ_HT_HOLD(lt2, layer_tap_2, bindings = <&mo>, <&to>;)
         JJ_MM(mmzd, mod_morph_z_delete, mods = <(MOD_RALT)>; bindings = <&kp Z>, <&kp DEL>;)
         JJ_HT_TAP(ltz, layer_tap_z, bindings = <&mo>, <&mmzd>;)
         JJ_HT_TAP(hm, homerow_mods, bindings = <&kp>, <&kp>;)
+        JJ_HML_34(hl, homerow_mods_left, bindings = <&kp>, <&kp>;)
+        JJ_HMR_34(hr, homerow_mods_right, bindings = <&kp>, <&kp>;)
+        JJ_HML_34(hma, homerow_mods_a, bindings = <&kp>, <&mmat>;) // to put shift on homerow, not that I would probably use this a lot but
+        JJ_HMR_34(hmo, homerow_mods_o, bindings = <&kp>, <&mmoe>;) // to put shift on homerow, not that I would probably use this a lot but
         JJ_TD(numdot, num_layer_dot, <&kp DOT>, <&none>, <&kp LC(LA(DEL))>, <&tog GAME>)
         JJ_MM(mmctrlspc, mod_morph_ctrl_space, mods = <(MOD_LSFT)>; bindings = <&kp SPACE>, <&kp LCTRL>;)
     };
     combos {
         compatible = "zmk,combos";
         game_ctrl {
-            timeout-ms = <50>;
-            key-positions = <10 31>; // left outer thumb + A (default) or G (gaming)
+            timeout-ms = CFAST;
+            key-positions = <31 10>; // left outer thumb + A (default) or G (gaming)
             bindings = <&kp LCTRL>;
             layers = <GAME>;
         };
         game_d {
-            timeout-ms = <50>;
-            key-positions = <14 31>; // left outer thumb + D (default) or T (gaming)
+            timeout-ms = CFAST;
+            key-positions = <31 14>; // left outer thumb + D (default) or T (gaming)
             bindings = <&kp D>;
             layers = <GAME>;
         };
-	combo_enter { // safety net to prevent activating backspace before hold-tap registers hold
-            timeout-ms = <50>;
-            key-positions = <19 32>; // right outer thumb + O key
+        combo_layer_num {
+            timeout-ms = CFAST;
+            key-positions = <12 13>; // S + T
+            bindings = <&tog NUM_LOCK>;
+        };
+      	combo_delete {
+            timeout-ms = CFAST;
+            key-positions = <20 21>; // Z + X
+            bindings = <&kp DEL>;
+            layers = <0>;
+      	};
+      	combo_enter {
+            timeout-ms = CFAST;
+            key-positions = <18 19>; // I + O
             bindings = <&kp ENTER>;
-	};
+      	};
+      	combo_enter_2 { // safety net to prevent activating backspace before hold-tap registers hold
+            timeout-ms = CFAST;
+            key-positions = <32 19>; // right outer thumb + O key
+            bindings = <&kp ENTER>;
+      	};
+      	combo_backspace {
+            timeout-ms = CFAST;
+            key-positions = <8 9>; // Y + :
+            bindings = <&kp BSPC>;
+            layers = <0>;
+      	};
+      	combo_left {
+            timeout-ms = CFAST;
+            key-positions = <33 16>; // right outer thumb + O key
+            bindings = <&kp LEFT>;
+            layers = <0>;
+      	};
+      	combo_down {
+            timeout-ms = CFAST;
+            key-positions = <33 17>; // right outer thumb + O key
+            bindings = <&kp DOWN>;
+            layers = <0>;
+      	};
+      	combo_up {
+            timeout-ms = CFAST;
+            key-positions = <33 18>; // right outer thumb + O key
+            bindings = <&kp UP>;
+            layers = <0>;
+      	};
+      	combo_right {
+            timeout-ms = CFAST;
+            key-positions = <33 19>; // right outer thumb + O key
+            bindings = <&kp RIGHT>;
+            layers = <0>;
+      	};
+      	combo_equal {
+            timeout-ms = CFAST;
+            key-positions = <7 8>; // U + Y
+            bindings = <&kp EQUAL>;
+            layers = <0>;
+      	};
+      	combo_hyphen {
+            timeout-ms = CFAST;
+            key-positions = <6 7>; // L + U
+            bindings = <&kp MINUS>;
+            layers = <0>;
+      	};
+      	combo_grave {
+            timeout-ms = CSLOW;
+            key-positions = <0 10>; // Q + A
+            bindings = <&mmgrave>;
+            layers = <0>;
+      	};
     };
     keymap {
         compatible = "zmk,keymap";
@@ -101,10 +175,10 @@
                 &mmqgr     &kp W      &kp F      &kp P      &kp G          &kp J      &kp L      &kp U      &kp Y      &mmsa
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  A       │  R       │  S       │  T       │  D       │   │  H       │  N       │  E       │  I       │  O       │
-                &mmat      &kp R      &kp S      &kp T     &lt TERM D      &kp H      &kp N      &kp E      &kp I      &mmoe
+               &hma LSHFT A &kp R     &kp S      &kp T     &lt TERM D      &kp H      &kp N      &kp E      &kp I    &hmo RSHFT O
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
-               &ltz FN Z &hm LCTRL X &hm RALT C &hm RGUI V &lt LNAV B     &kp K &hm LGUI M &hm LALT COMMA &hm LCTRL DOT &kp FSLH
+               &ltz FN Z &hl LCTRL X &hl RALT C &hl RGUI V &lt LNAV B     &kp K &hr LGUI M &hr LALT COMMA &hr LCTRL DOT &kp FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                           &caps LCTRL ESC &spc LSHFT SPACE &hm RALT BSPC &rl NUM R
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
@@ -153,7 +227,7 @@
                 &gresc    &kp C_PREV  &kp C_PP  &kp C_NEXT  &kp PSCRN &kp C_MUTE &kp C_VOL_DN &kp C_VOL_UP &kp C_BRI_DN &kp C_BRI_UP
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ LEFT     │ DOWN     │ UP       │ RIGHT    │ Num Layer│   │          │TODO:BTDSC│          │          │          │
-                &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &tog LNUM  &out OUT_TOG &bt BT_CLR &bt BT_PRV &bt BT_NXT &ext_power EP_TOG
+                &kp LEFT   &kp DOWN   &kp UP   &kp RIGHT &tog NUM_LOCK &out OUT_TOG &bt BT_CLR &bt BT_PRV &bt BT_NXT &ext_power EP_TOG
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ HOME     │ PG_DN    │ PG_UP    │ END      │          │   │          │          │          │          │          │
                 &kp HOME  &kp PG_DN   &kp PG_UP  &kp END    &trans    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
