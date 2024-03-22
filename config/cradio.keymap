@@ -13,6 +13,7 @@
 #include "custom.h"
 
 // timeouts
+// current switch timings: Akko Crystal Silver
 #define CFAST <30>
 #define CSLOW <50>
 
@@ -64,6 +65,7 @@
         JJ_MM(mmqgr, mod_morph_q_grave, mods = <(MOD_RALT)>; bindings = <&kp Q>, <&mmgrave>;)
         JJ_MM(mmat, mod_morph_a_tab, mods = <(MOD_RALT|MOD_RGUI)>; keep-mods = <(MOD_RALT|MOD_RGUI)>; bindings = <&kp A>, <&kp TAB>;)
         JJ_MM(mmcw, mod_morph_caps_word, mods = <(MOD_LSFT)>; bindings = <&kp ESC>, <&caps_word>;)
+        JJ_MM(gamespc, mod_morph_gaming_space_caps_word, mods = <(MOD_LSFT)>; bindings = <&kp SPACE>, <&caps_word>;)
         JJ_HT_HOLD(caps, caps_word_hold, bindings = <&kp>, <&mmcw>;)
         JJ_HT_HOLD(spc, space_shift, retro-tap; hold-while-undecided; bindings = <&kp>, <&kp>;)
         JJ_HT_HOLD(rm, repeat_mod, bindings = <&kp>, <&key_repeat>;)
@@ -84,94 +86,180 @@
     combos {
         compatible = "zmk,combos";
         game_ctrl {
-            timeout-ms = CFAST;
+            timeout-ms = CSLOW;
             key-positions = <31 10>; // left outer thumb + A (default) or G (gaming)
             bindings = <&kp LCTRL>;
             layers = <GAME>;
         };
         game_d {
-            timeout-ms = CFAST;
+            timeout-ms = CSLOW;
             key-positions = <31 14>; // left outer thumb + D (default) or T (gaming)
             bindings = <&kp D>;
             layers = <GAME>;
         };
+        combo_grave {
+            timeout-ms = CFAST;
+            key-positions = <0 1>; // Q + W
+            bindings = <&mmgrave>;
+            layers = <0>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
+        };
         combo_layer_num {
             timeout-ms = CFAST;
-            key-positions = <12 13>; // S + T
+            key-positions = <11 12 13>; // R + S + T
             bindings = <&tog NUM_LOCK>;
             layers = <0 LNUM NUM_LOCK>;
             require-prior-idle-ms = <JJ_COMBO_IDLE>;
         };
-      	combo_delete {
+        combo_tab {
+            timeout-ms = CFAST;
+            key-positions = <10 11>; // A + R
+            bindings = <&kp TAB>;
+            layers = <0>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
+        };
+        combo_delete {
             timeout-ms = CFAST;
             key-positions = <20 21>; // Z + X
             bindings = <&kp DEL>;
             layers = <0>;
             require-prior-idle-ms = <JJ_COMBO_IDLE>;
-      	};
-      	combo_enter {
+        };
+        combo_enter {
             timeout-ms = CFAST;
             key-positions = <18 19>; // I + O
             bindings = <&kp ENTER>;
             require-prior-idle-ms = <JJ_COMBO_IDLE>;
-      	};
-      	combo_enter_2 { // safety net to prevent activating backspace before hold-tap registers hold
-            timeout-ms = CFAST;
-            key-positions = <32 19>; // right outer thumb + O key
-            bindings = <&kp ENTER>;
-      	};
-      	combo_backspace {
+        };
+        combo_double_quotes {
             timeout-ms = CFAST;
             key-positions = <8 9>; // Y + :
-            bindings = <&kp BSPC>;
+            bindings = <&kp DOUBLE_QUOTES>;
             layers = <0>;
             require-prior-idle-ms = <JJ_COMBO_IDLE>;
-      	};
-      	combo_left {
+        };
+        combo_semicolon {
             timeout-ms = CFAST;
+            key-positions = <9 19>; // O + :
+            bindings = <&kp SEMICOLON>;
+            layers = <0>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
+        };
+        combo_left {
+            timeout-ms = CSLOW;
             key-positions = <33 16>; // right outer thumb + O key
             bindings = <&kp LEFT>;
             layers = <0>;
-      	};
-      	combo_down {
-            timeout-ms = CFAST;
+        };
+        combo_down {
+            timeout-ms = CSLOW;
             key-positions = <33 17>; // right outer thumb + O key
             bindings = <&kp DOWN>;
             layers = <0>;
-      	};
-      	combo_up {
-            timeout-ms = CFAST;
+        };
+        combo_up {
+            timeout-ms = CSLOW;
             key-positions = <33 18>; // right outer thumb + O key
             bindings = <&kp UP>;
             layers = <0>;
-      	};
-      	combo_right {
-            timeout-ms = CFAST;
+        };
+        combo_right {
+            timeout-ms = CSLOW;
             key-positions = <33 19>; // right outer thumb + O key
             bindings = <&kp RIGHT>;
             layers = <0>;
-      	};
-      	combo_equal {
+        };
+        combo_exclamation {
             timeout-ms = CFAST;
-            key-positions = <7 8>; // U + Y
-            bindings = <&kp EQUAL>;
+            key-positions = <1 2>; // W + F
+            bindings = <&kp EXCLAMATION>;
             layers = <0>;
             require-prior-idle-ms = <JJ_COMBO_IDLE>;
-      	};
-      	combo_hyphen {
+        };
+        combo_at {
+            timeout-ms = CFAST;
+            key-positions = <2 3>; // F + P
+            bindings = <&kp AT_SIGN>;
+            layers = <0>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
+        };
+        combo_hash {
+            timeout-ms = CFAST;
+            key-positions = <3 4>; // F + P
+            bindings = <&kp HASH>;
+            layers = <0>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
+        };
+        combo_dollar {
+            timeout-ms = CFAST;
+            key-positions = <11 12>; // R + S
+            bindings = <&kp DOLLAR>;
+            layers = <0>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
+        };
+        combo_percent {
+            timeout-ms = CFAST;
+            key-positions = <12 13>; // S + T
+            bindings = <&kp PERCENT>;
+            layers = <0>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
+        };
+        combo_caret {
+            timeout-ms = CFAST;
+            key-positions = <13 14>; // T + D
+            bindings = <&kp CARET>;
+            layers = <0>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
+        };
+        combo_ampersand {
+            timeout-ms = CFAST;
+            key-positions = <21 22>; // X + C
+            bindings = <&kp AMPERSAND>;
+            layers = <0>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
+        };
+        combo_star {
+            timeout-ms = CFAST;
+            key-positions = <21 23>; // X + V
+            bindings = <&kp STAR>;
+            layers = <0>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
+        };
+        combo_left_bracket {
+            timeout-ms = CFAST;
+            key-positions = <22 23>; // C + V
+            bindings = <&kp LEFT_PARENTHESIS>;
+            layers = <0>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
+        };
+        combo_right_bracket {
+            timeout-ms = CFAST;
+            key-positions = <23 24>; // V + B
+            bindings = <&kp RIGHT_PARENTHESIS>;
+            layers = <0>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
+        };
+        combo_pipe {
+            timeout-ms = CFAST;
+            key-positions = <5 6>; // J + L
+            bindings = <&kp PIPE>;
+            layers = <0>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
+        };
+        combo_hyphen {
             timeout-ms = CFAST;
             key-positions = <6 7>; // L + U
             bindings = <&kp MINUS>;
             layers = <0>;
             require-prior-idle-ms = <JJ_COMBO_IDLE>;
-      	};
-      	combo_grave {
-            timeout-ms = CSLOW;
-            key-positions = <0 10>; // Q + A
-            bindings = <&mmgrave>;
+        };
+        combo_equal {
+            timeout-ms = CFAST;
+            key-positions = <7 8>; // U + Y
+            bindings = <&kp EQUAL>;
             layers = <0>;
             require-prior-idle-ms = <JJ_COMBO_IDLE>;
-      	};
+        };
     };
     keymap {
         compatible = "zmk,keymap";
@@ -187,7 +275,7 @@
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
                &ltz FN Z &hl LCTRL X &hl RALT C &hl RGUI V &lt LNAV B     &kp K &hr LGUI M &hr LALT COMMA &hr LCTRL DOT &kp FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                          &caps LCTRL ESC &spc LSHFT SPACE &hm RALT BSPC &rl NUM R
+                                        &caps LCTRL ESC &spc LSHFT SPACE &hm MEH(RALT) BSPC &rl NUM R
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             // esc gets thumb cuz vim & as safe key to verify layer 0
 	    // mmsa = tap for colon, shift for semicolon, RALT for double quotes, NUM layer for single quotes
@@ -223,7 +311,7 @@
             //│ DELETE   │  7       │  8       │  9       │  0       │   │ PSCRN    │ HOME     │ PG_UP    │ PG_DN    │ END      │
                 &trans     &trans     &trans     &trans     &trans         &kp PSCRN  &kp HOME   &kp PG_UP &kp PG_DN   &kp END
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &trans     &trans        &mt RALT ENTER &to FN
+                                                &trans     &trans        &mt RALT ENTER &to FN
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -239,7 +327,7 @@
             //│ HOME     │ PG_DN    │ PG_UP    │ END      │          │   │          │          │          │          │          │
                 &kp HOME  &kp PG_DN   &kp PG_UP  &kp END    &trans    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                               &kp LA(TAB)  &kp ENTER       &trans     &to FN
+                                                &kp LA(TAB) &kp ENTER       &trans     &to FN
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -273,9 +361,9 @@
                 &kp G      &kp A      &kp R      &kp S      &kp T          &trans     &trans     &trans     &trans     &trans
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
-                &kp Z      &kp X      &kp C      &kp V      &trans         &trans     &trans     &trans     &trans     &trans
+                &kp Z      &kp X      &kp C      &kp V     &lt LNAV B      &trans     &trans     &trans     &trans     &trans
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &mmctrlspc &kp LSHFT      &trans     &lt2 NUM 0
+                                                 &gamespc   &kp LSHFT      &trans    &lt2 NUM 0
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             // esc gets thumb cuz vim & as safe key to verify layer 0
             >;
@@ -292,7 +380,7 @@
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
                 &trans     &trans     &trans     &trans     &trans         &to MK     &trans     &trans     &trans     &trans
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &to 0      &trans         &trans     &to TERM
+                                                &to 0       &trans         &trans     &to TERM
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -308,7 +396,7 @@
             //│  Z       │  X       │  C       │  D       │  V       │   │  K       │  H       │  ,<      │  .>      │  /?      │
                 &trans     &kx        &trans     &trans     &trans         &k9s       &trans     &trans     &trans     &trans
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &to 0      &trans         &trans     &trans
+                                                &to 0       &trans         &trans     &trans
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -324,7 +412,7 @@
             //│  Z       │  X       │  C       │  D       │  V       │   │  K       │  H       │  ,<      │  .>      │  /?      │
                 &trans     &trans     &trans     &trans     &trans         &trans     &trans     &trans     &trans     &trans
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &to 0      &trans         &trans     &trans
+                                                &to 0       &trans         &trans     &trans
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -340,7 +428,7 @@
             //│  Z       │  X       │  C       │  D       │  V       │   │  K       │  H       │  ,<      │  .>      │  /?      │
                 &trans     &trans     &trans     &trans     &trans         &fgk       &trans     &trans     &trans     &trans
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &to 0      &trans         &trans     &trans
+                                                &to 0       &trans         &trans     &trans
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -356,7 +444,7 @@
             //│  Z       │  X       │  C       │  D       │  V       │   │  K       │  H       │  ,<      │  .>      │  /?      │
                 &trans     &trans     &trans     &trans     &trans         &trans     &trans     &trans     &trans     &trans
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &to 0      &trans         &trans     &trans
+                                                &to 0       &trans         &trans     &trans
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -372,7 +460,7 @@
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
                 &trans     &trans     &gitc      &trans     &trans         &trans     &trans     &trans     &trans     &trans
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &to 0      &trans         &trans     &trans
+                                                &to 0       &trans         &trans     &trans
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };

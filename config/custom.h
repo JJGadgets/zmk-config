@@ -1,4 +1,6 @@
 // vi: ft=c
+#define MEH(mehbind) LS(LC(RA(mehbind)))
+
 #define JJ(name,desc,compat,cellsnum,...) \
 /omit-if-no-ref/ name: desc { \
     compatible = compat; \
