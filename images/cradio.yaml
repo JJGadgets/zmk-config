@@ -42,30 +42,30 @@ layers:
   - '3'
   - \
   - '['
-  - ']'
-  - '-'
+  - HOME
+  - UP
+  - END
   - '='
-  - ''''
   - TAB
   - '4'
   - '5'
   - '6'
   - '&numdot'
-  - TAB
+  - ']'
   - LEFT
   - DOWN
-  - UP
   - RIGHT
+  - ''''
   - DEL
   - '7'
   - '8'
   - '9'
   - '0'
-  - PSCRN
-  - HOME
+  - TAB
   - PG UP
+  - '-'
   - PG DN
-  - END
+  - PSCRN
   - {t: num_lock, h: LCTRL}
   - {t: SPACE, h: LSHFT}
   - {t: ENTER, h: RALT}
@@ -529,6 +529,9 @@ combos:
 - p: [31, 10]
   k: LCTRL
   l: [game]
+- p: [30, 10]
+  k: LCTRL
+  l: [game]
 - p: [31, 14]
   k: D
   l: [game]
@@ -544,7 +547,7 @@ combos:
 - p: [20, 21]
   k: DEL
   l: [default]
-- p: [18, 19]
+- p: [16, 17, 18]
   k: ENTER
 - p: [8, 9]
   k: '"'
@@ -558,10 +561,10 @@ combos:
 - p: [33, 17]
   k: DOWN
   l: [default]
-- p: [33, 18]
+- p: [33, 7]
   k: UP
   l: [default]
-- p: [33, 19]
+- p: [33, 18]
   k: RIGHT
   l: [default]
 - p: [1, 2]
