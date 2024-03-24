@@ -91,6 +91,12 @@
             bindings = <&kp LCTRL>;
             layers = <GAME>;
         };
+        game_ctrl2 {
+            timeout-ms = CSLOW;
+            key-positions = <30 10>; // left outer thumb + A (default) or G (gaming)
+            bindings = <&kp LCTRL>;
+            layers = <GAME>;
+        };
         game_d {
             timeout-ms = CSLOW;
             key-positions = <31 14>; // left outer thumb + D (default) or T (gaming)
@@ -105,7 +111,7 @@
             require-prior-idle-ms = <JJ_COMBO_IDLE>;
         };
         combo_layer_num {
-            timeout-ms = CFAST;
+            timeout-ms = CSLOW;
             key-positions = <11 12 13>; // R + S + T
             bindings = <&tog NUM_LOCK>;
             layers = <0 LNUM NUM_LOCK>;
@@ -126,8 +132,8 @@
             require-prior-idle-ms = <JJ_COMBO_IDLE>;
         };
         combo_enter {
-            timeout-ms = CFAST;
-            key-positions = <18 19>; // I + O
+            timeout-ms = CSLOW;
+            key-positions = <16 17 18>; // N + E + I
             bindings = <&kp ENTER>;
             require-prior-idle-ms = <JJ_COMBO_IDLE>;
         };
@@ -159,13 +165,13 @@
         };
         combo_up {
             timeout-ms = CSLOW;
-            key-positions = <33 18>; // right outer thumb + O key
+            key-positions = <33 7>; // right outer thumb + O key
             bindings = <&kp UP>;
             layers = <0>;
         };
         combo_right {
             timeout-ms = CSLOW;
-            key-positions = <33 19>; // right outer thumb + O key
+            key-positions = <33 18>; // right outer thumb + O key
             bindings = <&kp RIGHT>;
             layers = <0>;
         };
@@ -284,14 +290,14 @@
         num_layer {
             bindings = < // TODO: decide whether to split this or not
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            //│ `~       │  1       │  2       │  3       │  \|      │   │ [{       │ ]}       │ -_       │ =+       │ '"       │
-                &mmgrave   &kp N1     &kp N2     &kp N3     &kp BSLH       &kp LBKT   &kp RBKT   &kp MINUS  &kp EQUAL  &kp APOS
+            //│ `~       │  1       │  2       │  3       │  \|      │   │ [{       │ HOME     │ UP       │ END      │ =+       │
+                &mmgrave   &kp N1     &kp N2     &kp N3     &kp BSLH       &kp LBKT   &kp HOME   &kp UP     &kp END    &kp EQUAL
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│ TAB      │  4       │  5       │  6       │  .       │   │ TAB      │ LEFT     │ DOWN     │ UP       │ RIGHT    │
-                &kp TAB    &kp N4     &kp N5     &kp N6     &numdot        &kp TAB    &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT
+            //│ TAB      │  4       │  5       │  6       │  .       │   │ ]}       │ LEFT     │ DOWN     │ RIGHT    │ '"       │
+                &kp TAB    &kp N4     &kp N5     &kp N6     &numdot        &kp RBKT   &kp LEFT   &kp DOWN   &kp RIGHT  &kp APOS
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│ DELETE   │  7       │  8       │  9       │  0       │   │ PSCRN    │ HOME     │ PG_UP    │ PG_DN    │ END      │
-                &kp DEL    &kp N7     &kp N8     &kp N9     &kp N0         &kp PSCRN  &kp HOME   &kp PG_UP &kp PG_DN   &kp END
+            //│ DELETE   │  7       │  8       │  9       │  0       │   │ TAB      │ PG_UP    │ -_       │ PG_DN    │ PSCRN    │
+                &kp DEL    &kp N7     &kp N8     &kp N9     &kp N0         &kp TAB    &kp PG_UP  &kp MINUS  &kp PG_DN  &kp PSCRN
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                     &mtog LCTRL NUM_LOCK &mt LSHFT SPACE &mt RALT ENTER &to FN
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
