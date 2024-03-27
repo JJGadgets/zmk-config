@@ -31,45 +31,45 @@ layers:
   - {t: ',', h: LALT}
   - {t: ., h: LCTRL}
   - /
-  - {t: ESC, h: LCTRL, s: '&caps_word'}
+  - {t: ESC, h: LCTRL, s: CAPSLOCK}
   - {t: SPACE, h: LSHFT}
-  - {t: BSPC, h: LS(LC(RA(RALT)))}
-  - {t: '&key_repeat R', h: num_hold}
+  - {t: '&num_word 2', h: num_hold, s: '&caps_word 2'}
+  - {t: BSPC, h: LS(LC(RA(RALT))), s: DEL}
   num:
   - {t: '~', s: '`'}
   - '1'
   - '2'
   - '3'
   - \
-  - '['
+  - ENTER
   - HOME
-  - UP
+  - {t: UP, h: PG UP}
   - END
-  - '='
+  - '"'
   - TAB
   - '4'
   - '5'
   - '6'
   - '&numdot'
-  - ']'
-  - LEFT
-  - DOWN
-  - RIGHT
+  - TAB
+  - {t: LEFT, h: HOME}
+  - {t: DOWN, h: PG DN}
+  - {t: RIGHT, h: END}
   - ''''
   - DEL
   - '7'
   - '8'
   - '9'
   - '0'
-  - TAB
-  - PG UP
+  - '['
+  - ']'
   - '-'
-  - PG DN
+  - '='
   - PSCRN
   - {t: num_lock, h: LCTRL}
   - {t: SPACE, h: LSHFT}
-  - {t: ENTER, h: RALT}
-  - {t: fn, h: toggle}
+  - ''
+  - {t: BSPC, s: DEL}
   num_hold:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -103,8 +103,8 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
   - {type: held}
+  - {t: ▽, type: trans}
   num_lock:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -245,6 +245,41 @@ layers:
   - {t: lock, h: toggle}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+  mouse:
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - '&msc SCRL_UP'
+  - '&msc SCRL_LEFT'
+  - '&mmv MOVE_UP'
+  - '&msc SCRL_RIGHT'
+  - {t: default, h: toggle}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ''
+  - '&msc SCRL_DOWN'
+  - '&mmv MOVE_LEFT'
+  - '&mmv MOVE_DOWN'
+  - '&mmv MOVE_RIGHT'
+  - LSHFT
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ''
+  - '&mkp MB1'
+  - '&mkp MB3'
+  - '&mkp MB2'
+  - ''
+  - {t: default, h: toggle}
+  - {t: ▽, type: trans}
+  - '&mkp MB4'
+  - '&mkp MB5'
   game:
   - TAB
   - {t: Q, s: '~'}
@@ -535,11 +570,14 @@ combos:
 - p: [31, 14]
   k: D
   l: [game]
+- p: [6, 9]
+  k: {t: mouse, h: toggle}
+  l: [default, num, mouse]
 - p: [0, 1]
   k: {t: '~', s: '`'}
   l: [default]
 - p: [11, 12, 13]
-  k: {t: num_lock, h: toggle}
+  k: TAB
   l: [default, num, num_lock]
 - p: [10, 11]
   k: TAB
