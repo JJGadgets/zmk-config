@@ -1666,6 +1666,17 @@ path.combo {
 <text x="266" y="180" class="combo tap">D</text>
 </g>
 <g class="combo combopos-3">
+<rect rx="6" ry="6" x="42" y="50" width="28" height="26" class="combo"/>
+<text x="56" y="63" class="combo tap">ESC</text>
+</g>
+<g class="combo combopos-4">
+<path d="M560,118 l-66,-14" class="combo"/>
+<path d="M560,118 l66,14" class="combo"/>
+<rect rx="6" ry="6" x="546" y="105" width="28" height="26" class="combo"/>
+<text x="560" y="118" class="combo tap">mouse</text>
+<text x="560" y="129" class="combo hold">toggle</text>
+</g>
+<g class="combo combopos-5">
 <path d="M532,95 l-37,3" class="combo"/>
 <path d="M532,95 l37,4" class="combo"/>
 <rect rx="6" ry="6" x="518" y="82" width="28" height="26" class="combo"/>

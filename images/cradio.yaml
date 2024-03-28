@@ -570,9 +570,12 @@ combos:
 - p: [31, 14]
   k: D
   l: [game]
+- p: [0, 1]
+  k: ESC
+  l: [game]
 - p: [16, 19]
   k: {t: mouse, h: toggle}
-  l: [default, num, mouse]
+  l: [default, num, mouse, game]
 - p: [0, 1]
   k: {t: '~', s: '`'}
   l: [default]
