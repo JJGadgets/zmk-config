@@ -1,5 +1,5 @@
 // vi: ft=c
-#define MEH(mehbind) LS(LC(RA(mehbind)))
+#define MEH(mehbind) RS(RC(RA(mehbind)))
 
 #define JJ(name,desc,compat,cellsnum,...) \
 /omit-if-no-ref/ name: desc { \

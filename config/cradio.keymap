@@ -59,14 +59,14 @@
 };
 
 // mouse keys (copied from urob)
-#define ZMK_MOUSE_DEFAULT_MOVE_VAL 1500  // 600
+#define ZMK_MOUSE_DEFAULT_MOVE_VAL 3500  // 600
 #define ZMK_MOUSE_DEFAULT_SCRL_VAL 20    // 10
 
 #include <dt-bindings/zmk/mouse.h>
 
 &mmv {
   acceleration-exponent = <1>;      // 1
-  time-to-max-speed-ms = <500>;    // 40
+  time-to-max-speed-ms = <250>;    // 40
   delay-ms = <0>;                   // 0
 };
 
@@ -87,26 +87,22 @@
         JJ_MM(mmgrave, mod_morph_grave, mods = <(MOD_LSFT)>; bindings = <&kp TILDE>, <&kp GRAVE>;)
         JJ_MM(mmqgr, mod_morph_q_grave, mods = <(MOD_RALT)>; bindings = <&kp Q>, <&mmgrave>;)
         JJ_MM(mmat, mod_morph_a_tab, mods = <(MOD_RALT|MOD_RGUI)>; keep-mods = <(MOD_RALT|MOD_RGUI)>; bindings = <&kp A>, <&kp TAB>;)
-        JJ_MM(mmcw, mod_morph_caps_word, mods = <(MOD_LSFT)>; bindings = <&kp ESC>, <&kp CAPSLOCK>;)
+        JJ_MM(mmcaps, mod_morph_caps, mods = <(MOD_LSFT)>; bindings = <&kp ESC>, <&kp CAPSLOCK>;)
         JJ_MM(gamespc, mod_morph_gaming_space_caps_word, mods = <(MOD_LSFT)>; bindings = <&kp SPACE>, <&caps_word>;)
-        JJ_HT_HOLD(caps, caps_word_hold, bindings = <&kp>, <&mmcw>;)
+        JJ_HT_HOLD(caps, caps_word_hold, bindings = <&kp>, <&mmcaps>;)
         JJ_HT_HOLD(spc, space_shift, retro-tap; bindings = <&kp>, <&kp>;) // hold-while-undecided is temporarily removed as not merged in urob's fork yet, and is more a very minor comfort thing anyway
         JJ_HT_HOLD(rm, repeat_mod, bindings = <&kp>, <&key_repeat>;)
-        JJ_MM(nl, mod_morph_num_layer, mods = <(MOD_LSFT)>; bindings = <&snl NUM NUM>, <&snlc NUM NUM>;)
-        JJ_HT_HOLD(snl, smart_num_layer, bindings = <&mo>, <&num_word>;)
-        JJ_HT_HOLD(snlc, smart_num_layer_caps, bindings = <&mo>, <&caps_word>;)
+        JJ_HT_HOLD(nl, smart_num_layer, bindings = <&mo>, <&num_word>;)
         JJ_HT_HOLD(mto, mod_tap_to_layer, bindings = <&sk>, <&to>;)
         JJ_HT_HOLD(mtog, mod_tap_toggle_layer, bindings = <&sk>, <&tog>;)
         JJ_HT_HOLD(lt2, layer_tap_2, bindings = <&mo>, <&to>;)
         JJ_MM(mmzd, mod_morph_z_delete, mods = <(MOD_RALT)>; bindings = <&kp Z>, <&kp DEL>;)
         JJ_HT_TAP(ltz, layer_tap_z, bindings = <&mo>, <&mmzd>;)
         JJ_HT_TAP(hm, homerow_mods, bindings = <&kp>, <&kp>;)
-        JJ_MM(mmbd, mod_morph_backspace_delete, mods = <(MOD_LSFT)>; bindings = <&kp BSPC>, <&kp DEL>;)
-        JJ_HT_TAP(bd, backspace_delete, bindings = <&kp>, <&mmbd>;)
+        JJ_HT_TAP(bc, backspace_delete, bindings = <&kp>, <&mmbc>;)
+        JJ_MM(mmbc, mod_morph_backspace_caps_word, mods = <(MOD_LSFT)>; bindings = <&kp BSPC>, <&caps_word>;)
         JJ_HML_34(hl, homerow_mods_left, bindings = <&kp>, <&kp>;)
         JJ_HMR_34(hr, homerow_mods_right, bindings = <&kp>, <&kp>;)
-        JJ_HML_34(hma, homerow_mods_a, bindings = <&kp>, <&mmat>;) // to put shift on homerow, not that I would probably use this a lot but
-        JJ_HMR_34(hmo, homerow_mods_o, bindings = <&kp>, <&mmoe>;) // to put shift on homerow, not that I would probably use this a lot but
         JJ_TD(numdot, num_layer_dot, <&kp DOT>, <&none>, <&kp LC(LA(DEL))>, <&tog GAME>)
         JJ_MM(mmctrlspc, mod_morph_ctrl_space, mods = <(MOD_LSFT)>; bindings = <&kp SPACE>, <&kp LCTRL>;)
     };
@@ -119,12 +115,12 @@
                 &mmqgr     &kp W      &kp F      &kp P      &kp G          &kp J      &kp L      &kp U      &kp Y      &mmsa
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  A       │  R       │  S       │  T       │  D       │   │  H       │  N       │  E       │  I       │  O       │
-               &hma LSHFT A &kp R     &kp S      &kp T     &lt TERM D      &kp H      &kp N      &kp E      &kp I    &hmo RSHFT O
+                &kp A      &kp R      &kp S      &kp T     &lt TERM D      &kp H      &kp N      &kp E      &kp I      &kp O
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
                &ltz FN Z &hl LCTRL X &hl RALT C &hl RGUI V &lt LNAV B     &kp K &hr LGUI M &hr LALT COMMA &hr LCTRL DOT &kp FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                        &caps LCTRL ESC &spc LSHFT SPACE  &nl &bd MEH(RALT) BSPC
+                                        &caps LCTRL ESC &spc LSHFT SPACE &bc MEH(RALT) BSPC &nl NUM NUM
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             // esc gets thumb cuz vim & as safe key to verify layer 0
 	    // mmsa = tap for colon, shift for semicolon, RALT for double quotes, NUM layer for single quotes
@@ -142,7 +138,7 @@
             //│ DELETE   │  7       │  8       │  9       │  0       │   │ TAB      │ PG_UP    │ -_       │ PG_DN    │ PSCRN    │
                 &kp DEL    &kp N7     &kp N8     &kp N9     &kp N0         &kp LBKT   &kp RBKT   &kp MINUS  &kp EQUAL  &kp PSCRN
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                    &mtog LCTRL NUM_LOCK &mt LSHFT SPACE   &none      &mmbd
+                                    &mtog LCTRL NUM_LOCK &mt LSHFT SPACE   &trans     &none
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -160,7 +156,7 @@
             //│ DELETE   │  7       │  8       │  9       │  0       │   │ PSCRN    │ HOME     │ PG_UP    │ PG_DN    │ END      │
                 &trans     &trans     &trans     &trans     &trans         &kp PSCRN  &kp HOME   &kp PG_UP &kp PG_DN   &kp END
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                &trans     &trans        &mt RALT ENTER &to FN
+                                                &trans      &trans        &mt RALT ENTER &to FN
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -176,23 +172,23 @@
             //│ HOME     │ PG_DN    │ PG_UP    │ END      │          │   │          │          │          │          │          │
                 &kp HOME  &kp PG_DN   &kp PG_UP  &kp END    &trans    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                &kp LA(TAB) &kp ENTER       &trans     &to FN
+                                                &kp LA(TAB) &kp ENTER      &trans     &to FN
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
         fn_layer {
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            //│ F1       │ F2       │ F3       │ F4       │ F5       │   │ F13      │ F14      │ F15      │ F16      │ F17      │
-                &kp F1     &kp F2     &kp F3     &kp F4     &kp F5         &kp F13    &kp F14    &kp F15    &kp F16    &kp F17
+            //│ LALT     │ F1       │ F2       │ F3       │ F10      │   │ F13      │ F14      │ F15      │ F16      │ LALT     │
+                &kp LALT   &kp F1     &kp F2     &kp F3     &kp F10        &kp F13    &kp F14    &kp F15    &kp F16    &kp LALT
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│ F6       │ F7       │ F8       │ F9       │ F10      │   │ F18      │ F19      │ F20      │ F21      │ F22      │
-                &kp F6     &kp F7     &kp F8     &kp F9     &kp F10        &kp F18    &kp F19    &kp F20    &kp F21    &kp F22
+            //│ LGUI     │ F4       │ F5       │ F6       │ F11      │   │ F18      │ F19      │ F20      │ F21      │ LGUI     │
+                &kp LGUI   &kp F4     &kp F5     &kp F6     &kp F11        &kp F17    &kp F18    &kp F19    &kp F20    &kp LGUI
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│ LCTRL    │ LALT     │ LGUI     │ F11      │ F12      │   │ F23      │ F24      │ RGUI     │ RALT     │ RCTRL    │
-                &kp LCTRL  &kp LALT   &kp LGUI   &kp F11    &kp F12        &kp F23    &kp F24    &kp RGUI   &kp RALT   &kp RCTRL // TODO: meh key
+            //│ NONE     │ F7       │ F8       │ F9       │ F12      │   │ F23      │ F24      │ F23      │ F24      │ MEH      │
+                &none      &kp F7     &kp F8     &kp F9     &kp F12        &kp F21    &kp F22    &kp F23    &kp F24 &kp MEH(RALT)
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &to 0      &to LOCK       &trans     &trans //&to GAME
+                                                &to 0       &to LOCK       &trans     &to GAME
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -200,15 +196,15 @@
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
             //│ `~       │  1       │  2       │  3       │  \|      │   │ [{       │ ]}       │ -_       │ =+       │ '"       │
-                &trans     &trans     &trans     &trans     &trans &msc SCRL_UP &msc SCRL_LEFT &mmv MOVE_UP &msc SCRL_RIGHT &to 0
+                &trans     &trans     &trans     &trans     &trans &msc SCRL_UP &msc SCRL_LEFT &mmv MOVE_UP &msc SCRL_RIGHT &none
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ TAB      │  4       │  5       │  6       │  0       │   │ TAB      │ LEFT     │ DOWN     │ UP       │ RIGHT    │
-                &trans     &trans     &trans     &trans     &none &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &kp LSHFT
+                &trans     &trans     &trans     &trans     &trans &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &to 0
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ DELETE   │  7       │  8       │  9       │  0       │   │ PSCRN    │ HOME     │ PG_UP    │ PG_DN    │ END      │
-                &trans     &trans     &trans     &trans     &trans         &none      &mkp MB1   &mkp MB3   &mkp MB2   &none
+                &trans     &trans     &trans     &trans     &trans         &none      &mkp MB4   &mkp MB3   &mkp MB5   &none
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                &to 0       &trans         &mkp MB4   &mkp MB5
+                                                &to 0       &trans         &mkp MB1   &mkp MB2
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -228,7 +224,7 @@
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
                 &kp Z      &kp X      &kp C      &kp V     &lt LNAV B      &trans     &trans     &trans     &trans     &trans
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                 &gamespc   &kp LSHFT      &trans    &lt2 NUM 0
+                                                &gamespc    &kp LSHFT      &trans    &lt2 NUM 0
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             // esc gets thumb cuz vim & as safe key to verify layer 0
             >;
@@ -378,7 +374,7 @@
         };
         combo_mouse_layer {
             timeout-ms = CFAST;
-            key-positions = <6 9>; // W + G
+            key-positions = <16 19>; // N + O
             bindings = <&tog MOUSE>;
             layers = <0 LNUM MOUSE>;
             require-prior-idle-ms = <JJ_COMBO_IDLE>;
