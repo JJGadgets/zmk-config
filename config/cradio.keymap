@@ -13,7 +13,7 @@
 #include "custom.h"
 
 // timeouts
-// current switch timings: Akko Crystal Silver
+// current switch timings: stock Akko Crystal Silver on Sweep High
 #define CFAST <30>
 #define CSLOW <50>
 
@@ -59,15 +59,15 @@
 };
 
 // mouse keys (copied from urob)
-#define ZMK_MOUSE_DEFAULT_MOVE_VAL 3500  // 600
+#define ZMK_MOUSE_DEFAULT_MOVE_VAL 4250  // 600
 #define ZMK_MOUSE_DEFAULT_SCRL_VAL 20    // 10
 
 #include <dt-bindings/zmk/mouse.h>
 
 &mmv {
   acceleration-exponent = <1>;      // 1
-  time-to-max-speed-ms = <250>;    // 40
-  delay-ms = <0>;                   // 0
+  time-to-max-speed-ms = <375>;    // 40
+  delay-ms = <1>;                   // 0
 };
 
 &msc {
@@ -372,11 +372,18 @@
             bindings = <&kp D>;
             layers = <GAME>;
         };
-        combo_mouse_layer {
+        game_esc {
             timeout-ms = CFAST;
+            key-positions = <0 1>; // Q + W
+            bindings = <&kp ESC>;
+            layers = <GAME>;
+            require-prior-idle-ms = <JJ_COMBO_IDLE>;
+        };
+        combo_mouse_layer {
+            timeout-ms = CSLOW;
             key-positions = <16 19>; // N + O
             bindings = <&tog MOUSE>;
-            layers = <0 LNUM MOUSE>;
+            layers = <0 LNUM MOUSE GAME>;
             require-prior-idle-ms = <JJ_COMBO_IDLE>;
         };
         combo_grave {
