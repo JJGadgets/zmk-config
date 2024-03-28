@@ -11,7 +11,7 @@ layers:
   - U
   - Y
   - {t: '&tdc', s: '"'}
-  - A
+  - {t: A, s: TAB}
   - R
   - S
   - T
@@ -30,7 +30,7 @@ layers:
   - {t: M, h: LGUI}
   - {t: ',', h: LALT}
   - {t: ., h: LCTRL}
-  - /
+  - {t: /, h: mouse}
   - {t: ESC, h: LCTRL, s: CAPSLOCK}
   - {t: SPACE, h: LSHFT}
   - {t: BSPC, h: RS(RC(RA(RALT))), s: '&caps_word'}
@@ -68,7 +68,7 @@ layers:
   - PSCRN
   - {t: num_lock, h: LCTRL}
   - {t: SPACE, h: LSHFT}
-  - {t: ▽, type: trans}
+  - {t: BSPC, h: RS(RC(RA(RALT))), s: '&caps_word'}
   - ''
   num_hold:
   - {t: ▽, type: trans}
@@ -275,7 +275,7 @@ layers:
   - '&mkp MB4'
   - '&mkp MB3'
   - '&mkp MB5'
-  - ''
+  - {type: held}
   - {t: default, h: toggle}
   - {t: ▽, type: trans}
   - '&mkp MB1'
@@ -569,6 +569,12 @@ combos:
   l: [game]
 - p: [31, 14]
   k: D
+  l: [game]
+- p: [30, 14]
+  k: D
+  l: [game]
+- p: [31, 32]
+  k: {t: SPACE, h: toggle}
   l: [game]
 - p: [0, 1]
   k: ESC
