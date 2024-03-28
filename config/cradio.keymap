@@ -59,10 +59,10 @@
 };
 
 // mouse keys (copied from urob)
+#include <dt-bindings/zmk/mouse.h>
+
 #define ZMK_MOUSE_DEFAULT_MOVE_VAL 4250  // 600
 #define ZMK_MOUSE_DEFAULT_SCRL_VAL 20    // 10
-
-#include <dt-bindings/zmk/mouse.h>
 
 &mmv {
   acceleration-exponent = <1>;      // 1
@@ -115,10 +115,10 @@
                 &mmqgr     &kp W      &kp F      &kp P      &kp G          &kp J      &kp L      &kp U      &kp Y      &mmsa
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  A       │  R       │  S       │  T       │  D       │   │  H       │  N       │  E       │  I       │  O       │
-                &kp A      &kp R      &kp S      &kp T     &lt TERM D      &kp H      &kp N      &kp E      &kp I      &kp O
+                &mmat      &kp R      &kp S      &kp T     &lt TERM D      &kp H      &kp N      &kp E      &kp I      &kp O
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
-               &ltz FN Z &hl LCTRL X &hl RALT C &hl RGUI V &lt LNAV B     &kp K &hr LGUI M &hr LALT COMMA &hr LCTRL DOT &kp FSLH
+               &ltz FN Z &hl LCTRL X &hl RALT C &hl RGUI V &lt LNAV B     &kp K &hr LGUI M &hr LALT COMMA &hr LCTRL DOT &lt MOUSE FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                         &caps LCTRL ESC &spc LSHFT SPACE &bc MEH(RALT) BSPC &nl NUM NUM
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
@@ -130,7 +130,7 @@
             bindings = < // TODO: decide whether to split this or not
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
             //│ `~       │  1       │  2       │  3       │  \|      │   │ [{       │ HOME     │ UP       │ END      │ =+       │
-                &mmgrave   &kp N1     &kp N2     &kp N3     &kp BSLH  &kp ENTER   &kp HOME &hm PG_UP UP &kp END &kp DOUBLE_QUOTES
+                &mmgrave   &kp N1     &kp N2     &kp N3     &kp BSLH    &kp ENTER &kp HOME &hm PG_UP UP &kp END &kp DOUBLE_QUOTES
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ TAB      │  4       │  5       │  6       │  .       │   │ ]}       │ LEFT     │ DOWN     │ RIGHT    │ '"       │
                 &kp TAB    &kp N4     &kp N5     &kp N6     &numdot   &kp TAB &hm HOME LEFT &hm PG_DN DOWN &hm END RIGHT &kp APOS
@@ -138,7 +138,7 @@
             //│ DELETE   │  7       │  8       │  9       │  0       │   │ TAB      │ PG_UP    │ -_       │ PG_DN    │ PSCRN    │
                 &kp DEL    &kp N7     &kp N8     &kp N9     &kp N0         &kp LBKT   &kp RBKT   &kp MINUS  &kp EQUAL  &kp PSCRN
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                    &mtog LCTRL NUM_LOCK &mt LSHFT SPACE   &trans     &none
+                                    &mtog LCTRL NUM_LOCK &spc LSHFT SPACE &bc MEH(RALT) BSPC &none
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -370,6 +370,18 @@
             timeout-ms = CSLOW;
             key-positions = <31 14>; // left outer thumb + D (default) or T (gaming)
             bindings = <&kp D>;
+            layers = <GAME>;
+        };
+        game_d2 {
+            timeout-ms = CSLOW;
+            key-positions = <30 14>; // left outer thumb + D (default) or T (gaming)
+            bindings = <&kp D>;
+            layers = <GAME>;
+        };
+        game_space_hold {
+            timeout-ms = CSLOW;
+            key-positions = <31 32>; // left outer thumb + D (default) or T (gaming)
+            bindings = <&kt SPACE>;
             layers = <GAME>;
         };
         game_esc {
