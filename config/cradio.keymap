@@ -59,13 +59,13 @@
 };
 
 // mouse keys (copied from urob)
-#define ZMK_MOUSE_DEFAULT_MOVE_VAL 4250  // 600
+#define ZMK_MOUSE_DEFAULT_MOVE_VAL 3500  // 600
 #define ZMK_MOUSE_DEFAULT_SCRL_VAL 20    // 10
 
 #include <dt-bindings/zmk/mouse.h>
 
 &mmv {
-  acceleration-exponent = <1>;      // 1
+  acceleration-exponent = <2>;      // 1
   time-to-max-speed-ms = <325>;    // 40
   delay-ms = <0>;                   // 0
 };
