@@ -53,26 +53,27 @@
 &caps_word {
     continue-list = <BSPC DEL UNDERSCORE MINUS SEMICOLON COLON APOSTROPHE DOUBLE_QUOTES>;
 };
-&num_word { // urob fork only
-    layers = <NUM_LOCK>;
-    continue-list = <BSPC DEL DOT AMPERSAND UP DOWN LEFT RIGHT>;
-};
+// &num_word { // urob fork only
+//     layers = <NUM_LOCK>;
+//     continue-list = <BSPC DEL DOT AMPERSAND UP DOWN LEFT RIGHT>;
+// };
 
 // mouse keys (copied from urob)
-#define ZMK_MOUSE_DEFAULT_MOVE_VAL 3500  // 600
+#define ZMK_MOUSE_DEFAULT_MOVE_VAL 4250  // 600
 #define ZMK_MOUSE_DEFAULT_SCRL_VAL 20    // 10
 
 #include <dt-bindings/zmk/mouse.h>
+#include <behaviors/mouse_keys.dtsi>
 
 &mmv {
   acceleration-exponent = <2>;      // 1
-  time-to-max-speed-ms = <325>;    // 40
+  time-to-max-speed-ms = <120>;    // 40
   delay-ms = <0>;                   // 0
 };
 
 &msc {
-  acceleration-exponent = <1>;      // 0
-  time-to-max-speed-ms = <40>;      // 500
+  acceleration-exponent = <2>;      // 0
+  time-to-max-speed-ms = <10>;      // 500
   delay-ms = <0>;                   // 10
 };
 
@@ -90,19 +91,20 @@
         JJ_MM(mmcaps, mod_morph_caps, mods = <(MOD_LSFT)>; bindings = <&kp ESC>, <&kp CAPSLOCK>;)
         JJ_MM(gamespc, mod_morph_gaming_space_caps_word, mods = <(MOD_LSFT)>; bindings = <&kp SPACE>, <&caps_word>;)
         JJ_HT_HOLD(caps, caps_word_hold, bindings = <&kp>, <&mmcaps>;)
-        JJ_HT_HOLD(spc, space_shift, retro-tap; bindings = <&kp>, <&kp>;) // hold-while-undecided is temporarily removed as not merged in urob's fork yet, and is more a very minor comfort thing anyway
+        JJ_HT_HOLD(spc, space_shift, hold-while-undecided; bindings = <&kp>, <&kp>;)
+        // JJ_HT_HOLD(spc, space_shift, bindings = <&kp>, <&kp>;)
         JJ_HT_HOLD(rm, repeat_mod, bindings = <&kp>, <&key_repeat>;)
-        JJ_HT_HOLD(nl, smart_num_layer, bindings = <&mo>, <&num_word>;)
         JJ_HT_HOLD(mto, mod_tap_to_layer, bindings = <&sk>, <&to>;)
         JJ_HT_HOLD(mtog, mod_tap_toggle_layer, bindings = <&sk>, <&tog>;)
         JJ_HT_HOLD(lt2, layer_tap_2, bindings = <&mo>, <&to>;)
         JJ_MM(mmzd, mod_morph_z_delete, mods = <(MOD_RALT)>; bindings = <&kp Z>, <&kp DEL>;)
         JJ_HT_TAP(ltz, layer_tap_z, bindings = <&mo>, <&mmzd>;)
         JJ_HT_TAP(hm, homerow_mods, bindings = <&kp>, <&kp>;)
-        JJ_HT_TAP(bc, backspace_delete, bindings = <&kp>, <&mmbc>;)
-        JJ_MM(mmbc, mod_morph_backspace_caps_word, mods = <(MOD_LSFT)>; bindings = <&kp BSPC>, <&caps_word>;)
         JJ_HML_34(hl, homerow_mods_left, bindings = <&kp>, <&kp>;)
         JJ_HMR_34(hr, homerow_mods_right, bindings = <&kp>, <&kp>;)
+        JJ_HT_HOLD(nl, num_layer_stuff, quick-tap-ms = <200>; bindings = <&mo>, <&mmnl>;)
+        JJ_HT_HOLD(bs, backspace_meh, quick-tap-ms = <200>; bindings = <&kp>, <&kp>;)
+        JJ_MM(mmnl, mod_morph_num_layer_caps_word, mods = <(MOD_LSFT)>; bindings = <&key_repeat>, <&caps_word>;)
         JJ_TD(numdot, num_layer_dot, <&kp DOT>, <&none>, <&kp LC(LA(DEL))>, <&tog GAME>)
         JJ_MM(mmctrlspc, mod_morph_ctrl_space, mods = <(MOD_LSFT)>; bindings = <&kp SPACE>, <&kp LCTRL>;)
     };
@@ -120,7 +122,7 @@
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
                &ltz FN Z &hl LCTRL X &hl RALT C &hl RGUI V &lt LNAV B     &kp K &hr LGUI M &hr LALT COMMA &hr LCTRL DOT &lt MOUSE FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                        &caps LCTRL ESC &spc LSHFT SPACE &bc MEH(RALT) BSPC &nl NUM NUM
+                                        &caps LCTRL ESC &spc LSHFT SPACE &bs MEH(RALT) BSPC &nl NUM NUM
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             // esc gets thumb cuz vim & as safe key to verify layer 0
 	    // mmsa = tap for colon, shift for semicolon, RALT for double quotes, NUM layer for single quotes
@@ -130,15 +132,15 @@
             bindings = < // TODO: decide whether to split this or not
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
             //│ `~       │  1       │  2       │  3       │  \|      │   │ [{       │ HOME     │ UP       │ END      │ =+       │
-                &mmgrave   &kp N1     &kp N2     &kp N3     &kp BSLH    &kp ENTER &kp HOME &hm PG_UP UP &kp END &kp DOUBLE_QUOTES
+                &mmgrave   &kp N1     &kp N2     &kp N3     &kp BSLH &kp ENTER &hm PG_UP HOME &kp UP &hm PG_DN END &kp DOUBLE_QUOTES
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ TAB      │  4       │  5       │  6       │  .       │   │ ]}       │ LEFT     │ DOWN     │ RIGHT    │ '"       │
-                &kp TAB    &kp N4     &kp N5     &kp N6     &numdot   &kp TAB &hm HOME LEFT &hm PG_DN DOWN &hm END RIGHT &kp APOS
+                &kp TAB    &kp N4     &kp N5     &kp N6     &kp DOT        &kp TAB    &kp LEFT   &kp DOWN   &kp RIGHT  &kp APOS
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ DELETE   │  7       │  8       │  9       │  0       │   │ TAB      │ PG_UP    │ -_       │ PG_DN    │ PSCRN    │
                 &kp DEL    &kp N7     &kp N8     &kp N9     &kp N0         &kp LBKT   &kp RBKT   &kp MINUS  &kp EQUAL  &kp PSCRN
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                    &mtog LCTRL NUM_LOCK &spc LSHFT SPACE &bc MEH(RALT) BSPC &none
+                                    &mtog LCTRL NUM_LOCK &spc LSHFT SPACE &bs MEH(RALT) BSPC &none
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -180,7 +182,7 @@
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
             //│ LALT     │ F1       │ F2       │ F3       │ F10      │   │ F13      │ F14      │ F15      │ F16      │ LALT     │
-                &kp LALT   &kp F1     &kp F2     &kp F3     &kp F10        &kp F13    &kp F14    &kp F15    &kp F16    &kp LALT
+                &kp LALT   &kp F1     &kp F2     &kp F3     &kp F10        &kp F13    &kp F14    &kp F15    &kp F16 &kp LC(LA(DEL))
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ LGUI     │ F4       │ F5       │ F6       │ F11      │   │ F18      │ F19      │ F20      │ F21      │ LGUI     │
                 &kp LGUI   &kp F4     &kp F5     &kp F6     &kp F11        &kp F17    &kp F18    &kp F19    &kp F20    &kp LGUI
@@ -188,7 +190,7 @@
             //│ NONE     │ F7       │ F8       │ F9       │ F12      │   │ F23      │ F24      │ F23      │ F24      │ MEH      │
                 &none      &kp F7     &kp F8     &kp F9     &kp F12        &kp F21    &kp F22    &kp F23    &kp F24 &kp MEH(RALT)
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                &to 0       &to LOCK       &trans     &to GAME
+                                                &to 0       &to LOCK       &trans     &tog GAME
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -196,13 +198,13 @@
             bindings = <
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
             //│ `~       │  1       │  2       │  3       │  \|      │   │ [{       │ ]}       │ -_       │ =+       │ '"       │
-                &trans     &trans     &trans     &trans     &trans &msc SCRL_UP &msc SCRL_LEFT &mmv MOVE_UP &msc SCRL_RIGHT &none
+                &trans     &trans     &trans     &trans     &trans &msc SCRL_UP &msc SCRL_LEFT &mmv MOVE_UP &msc SCRL_RIGHT &to 0
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ TAB      │  4       │  5       │  6       │  0       │   │ TAB      │ LEFT     │ DOWN     │ UP       │ RIGHT    │
                 &trans     &trans     &trans     &trans     &trans &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &to 0
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ DELETE   │  7       │  8       │  9       │  0       │   │ PSCRN    │ HOME     │ PG_UP    │ PG_DN    │ END      │
-                &trans     &trans     &trans     &trans     &trans         &none      &mkp MB4   &mkp MB3   &mkp MB5   &none
+                &trans     &trans     &trans     &trans     &trans         &none      &mkp MB4   &mkp MB3   &mkp MB5   &to 0
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                                 &to 0       &trans         &mkp MB1   &mkp MB2
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯

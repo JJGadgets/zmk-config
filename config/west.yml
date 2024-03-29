@@ -2,14 +2,18 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: urob
+    - name: urob # mouse keys, smart layers, no hold-while-undecided in hold-tap behavior
       url-base: https://github.com/urob
+    - name: petejohanson # mouse keys
+      url-base: https://github.com/petejohanson
     # Additional modules containing boards/shields/custom code can be listed here as well
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
   projects:
     - name: zmk
-      remote: urob # mouse keys, smart layers
-      revision: main
+      remote: petejohanson
+      revision: feat/pointers-move-scroll
+      # remote: urob
+      # revision: main
       import: app/west.yml
   self:
     path: config
