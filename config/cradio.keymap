@@ -86,12 +86,15 @@
         JJ_MM(mmsa, mod_morph_semicolon_apostrophe, mods = <(MOD_RALT)>; bindings = <&mmsc>, <&kp DOUBLE_QUOTES>;)
         JJ_MM(mmoe, mod_morph_o_enter, mods = <(MOD_RALT)>; bindings = <&kp O>, <&kp ENTER>;)
         JJ_MM(mmgrave, mod_morph_grave, mods = <(MOD_LSFT)>; bindings = <&kp TILDE>, <&kp GRAVE>;)
+        JJ_MM(mmpipe, mod_morph_pipe_backslash, mods = <(MOD_LSFT)>; bindings = <&kp PIPE>, <&kp BSLH>;)
         JJ_MM(mmqgr, mod_morph_q_grave, mods = <(MOD_RALT)>; bindings = <&kp Q>, <&mmgrave>;)
         JJ_MM(mmat, mod_morph_a_tab, mods = <(MOD_RALT|MOD_RGUI)>; keep-mods = <(MOD_RALT|MOD_RGUI)>; bindings = <&kp A>, <&kp TAB>;)
+        JJ_MM(mmrr, mod_morph_r_repeat_key, mods = <(MOD_RALT)>; bindings = <&kp R>, <&key_repeat>;)
         JJ_MM(mmcaps, mod_morph_caps, mods = <(MOD_LSFT)>; bindings = <&kp ESC>, <&kp CAPSLOCK>;)
-        JJ_MM(gamespc, mod_morph_gaming_space_caps_word, mods = <(MOD_LSFT)>; bindings = <&kp SPACE>, <&caps_word>;)
-        JJ_HT_HOLD(caps, caps_word_hold, bindings = <&kp>, <&mmcaps>;)
-        JJ_HT_HOLD(spc, space_shift, hold-while-undecided; bindings = <&kp>, <&kp>;)
+        JJ_MM(mmspc, mod_morph_space_caps_word, mods = <(MOD_LSFT)>; bindings = <&kp SPACE>, <&caps_word>;)
+        JJ_HT_HOLD(spc, caps_word_hold, bindings = <&kp>, <&mmspc>;)
+        JJ_HT_HOLD(shft, smart_shift, hold-while-undecided; hold-while-undecided-linger; bindings = <&kp>, <&mmshift>;)
+        JJ_MM(mmshift, mod_morph_shift, mods = <(MOD_LSFT)>; bindings = <&sk LSHFT>, <&caps_word>;)
         // JJ_HT_HOLD(spc, space_shift, bindings = <&kp>, <&kp>;)
         JJ_HT_HOLD(rm, repeat_mod, bindings = <&kp>, <&key_repeat>;)
         JJ_HT_HOLD(mto, mod_tap_to_layer, bindings = <&sk>, <&to>;)
@@ -102,9 +105,10 @@
         JJ_HT_TAP(hm, homerow_mods, bindings = <&kp>, <&kp>;)
         JJ_HML_34(hl, homerow_mods_left, bindings = <&kp>, <&kp>;)
         JJ_HMR_34(hr, homerow_mods_right, bindings = <&kp>, <&kp>;)
-        JJ_HT_HOLD(nl, num_layer_stuff, quick-tap-ms = <200>; bindings = <&mo>, <&mmnl>;)
+        // JJ_HT_HOLD(nl, num_layer_stuff, quick-tap-ms = <200>; bindings = <&mo>, <&mmnl>;)
+        JJ_HT_HOLD(nl, num_layer_stuff, hold-while-undecided; bindings = <&mo>, <&mmnl>;)
         JJ_HT_HOLD(bs, backspace_meh, quick-tap-ms = <200>; bindings = <&kp>, <&kp>;)
-        JJ_MM(mmnl, mod_morph_num_layer_caps_word, mods = <(MOD_LSFT)>; bindings = <&key_repeat>, <&caps_word>;)
+        JJ_MM(mmnl, mod_morph_num_layer_caps_word, mods = <(MOD_LSFT)>; bindings = <&kp ESC>, <&kp CAPSLOCK>;)
         JJ_TD(numdot, num_layer_dot, <&kp DOT>, <&none>, <&kp LC(LA(DEL))>, <&tog GAME>)
         JJ_MM(mmctrlspc, mod_morph_ctrl_space, mods = <(MOD_LSFT)>; bindings = <&kp SPACE>, <&kp LCTRL>;)
     };
@@ -117,12 +121,12 @@
                 &mmqgr     &kp W      &kp F      &kp P      &kp G          &kp J      &kp L      &kp U      &kp Y      &mmsa
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  A       │  R       │  S       │  T       │  D       │   │  H       │  N       │  E       │  I       │  O       │
-                &mmat      &kp R      &kp S      &kp T     &lt TERM D      &kp H      &kp N      &kp E      &kp I      &kp O
+                &mmat      &mmrr      &kp S      &kp T     &lt TERM D      &kp H      &kp N      &kp E      &kp I      &kp O
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
                &ltz FN Z &hl LCTRL X &hl RALT C &hl RGUI V &lt LNAV B     &kp K &hr LGUI M &hr LALT COMMA &hr LCTRL DOT &lt MOUSE FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                        &caps LCTRL ESC &spc LSHFT SPACE &bs MEH(RALT) BSPC &nl NUM NUM
+                                    &spc LCTRL SPACE &shft LSHFT LSHFT &bs MEH(RALT) BSPC &nl NUM ESC
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             // esc gets thumb cuz vim & as safe key to verify layer 0
 	    // mmsa = tap for colon, shift for semicolon, RALT for double quotes, NUM layer for single quotes
@@ -132,15 +136,15 @@
             bindings = < // TODO: decide whether to split this or not
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
             //│ `~       │  1       │  2       │  3       │  \|      │   │ [{       │ HOME     │ UP       │ END      │ =+       │
-                &mmgrave   &kp N1     &kp N2     &kp N3     &kp BSLH &kp ENTER &hm PG_UP HOME &kp UP &hm PG_DN END &kp DOUBLE_QUOTES
+                &mmgrave   &kp N1     &kp N2     &kp N3     &kp COMMA      &mmpipe &hm PG_UP HOME &kp UP &hm PG_DN END &mmsc
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ TAB      │  4       │  5       │  6       │  .       │   │ ]}       │ LEFT     │ DOWN     │ RIGHT    │ '"       │
-                &kp TAB    &kp N4     &kp N5     &kp N6     &kp DOT        &kp TAB    &kp LEFT   &kp DOWN   &kp RIGHT  &kp APOS
+                &kp ESC    &kp N4     &kp N5     &kp N6     &kp DOT        &kp TAB    &kp LEFT   &kp DOWN   &kp RIGHT  &kp APOS
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ DELETE   │  7       │  8       │  9       │  0       │   │ TAB      │ PG_UP    │ -_       │ PG_DN    │ PSCRN    │
                 &kp DEL    &kp N7     &kp N8     &kp N9     &kp N0         &kp LBKT   &kp RBKT   &kp MINUS  &kp EQUAL  &kp PSCRN
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                    &mtog LCTRL NUM_LOCK &spc LSHFT SPACE &bs MEH(RALT) BSPC &none
+                                    &mt LCTRL SPACE &mtog LSHFT NUM_LOCK &bs MEH(RALT) BSPC &none
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -395,7 +399,7 @@
         };
         combo_mouse_layer {
             timeout-ms = CSLOW;
-            key-positions = <16 19>; // N + O
+            key-positions = <16 17 18>; // L U Y
             bindings = <&tog MOUSE>;
             layers = <0 LNUM MOUSE GAME>;
             require-prior-idle-ms = <JJ_COMBO_IDLE>;
@@ -407,18 +411,11 @@
             layers = <0>;
             require-prior-idle-ms = <JJ_COMBO_IDLE>;
         };
-        combo_layer_num {
+        combo_tab {
             timeout-ms = CSLOW;
             key-positions = <11 12 13>; // R + S + T
             bindings = <&kp TAB>;
             layers = <0 LNUM NUM_LOCK>;
-            require-prior-idle-ms = <JJ_COMBO_IDLE>;
-        };
-        combo_tab {
-            timeout-ms = CFAST;
-            key-positions = <10 11>; // A + R
-            bindings = <&kp TAB>;
-            layers = <0>;
             require-prior-idle-ms = <JJ_COMBO_IDLE>;
         };
         combo_delete {
@@ -470,6 +467,30 @@
             timeout-ms = CSLOW;
             key-positions = <33 18>; // right outer thumb + O key
             bindings = <&kp RIGHT>;
+            layers = <0>;
+        };
+        combo_apos {
+            timeout-ms = CSLOW;
+            key-positions = <33 19>; // right outer thumb + O key
+            bindings = <&kp APOS>;
+            layers = <0>;
+        };
+        combo_right {
+            timeout-ms = CSLOW;
+            key-positions = <33 18>; // right outer thumb + O key
+            bindings = <&kp RIGHT>;
+            layers = <0>;
+        };
+        combo_hyphen {
+            timeout-ms = CSLOW;
+            key-positions = <33 27>; // right outer thumb + O key
+            bindings = <&kp MINUS>;
+            layers = <0>;
+        };
+        combo_equal {
+            timeout-ms = CSLOW;
+            key-positions = <33 28>; // right outer thumb + O key
+            bindings = <&kp EQUAL>;
             layers = <0>;
         };
         combo_exclamation {
@@ -546,20 +567,6 @@
             timeout-ms = CFAST;
             key-positions = <5 6>; // J + L
             bindings = <&kp PIPE>;
-            layers = <0>;
-            require-prior-idle-ms = <JJ_COMBO_IDLE>;
-        };
-        combo_hyphen {
-            timeout-ms = CFAST;
-            key-positions = <6 7>; // L + U
-            bindings = <&kp MINUS>;
-            layers = <0>;
-            require-prior-idle-ms = <JJ_COMBO_IDLE>;
-        };
-        combo_equal {
-            timeout-ms = CFAST;
-            key-positions = <7 8>; // U + Y
-            bindings = <&kp EQUAL>;
             layers = <0>;
             require-prior-idle-ms = <JJ_COMBO_IDLE>;
         };
