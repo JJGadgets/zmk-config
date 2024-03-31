@@ -12,7 +12,7 @@ layers:
   - Y
   - {t: '&tdc', s: '"'}
   - {t: A, s: TAB}
-  - R
+  - {t: R, s: '&key_repeat'}
   - S
   - T
   - {t: D, h: term}
@@ -31,22 +31,22 @@ layers:
   - {t: ',', h: LALT}
   - {t: ., h: LCTRL}
   - {t: /, h: mouse}
-  - {t: ESC, h: LCTRL, s: CAPSLOCK}
-  - {t: SPACE, h: LSHFT}
+  - {t: SPACE, h: LCTRL, s: '&caps_word'}
+  - {t: LSHFT, h: LSHFT, s: '&caps_word'}
   - {t: BSPC, h: RS(RC(RA(RALT)))}
-  - {t: '&key_repeat', h: num_hold, s: '&caps_word'}
+  - {t: ESC, h: num_hold, s: CAPSLOCK}
   num:
   - {t: '~', s: '`'}
   - '1'
   - '2'
   - '3'
-  - \
-  - ENTER
+  - ','
+  - {t: '|', s: \}
   - {t: HOME, h: PG UP}
   - UP
   - {t: END, h: PG DN}
-  - '"'
-  - TAB
+  - {t: '&tdc', s: ;}
+  - ESC
   - '4'
   - '5'
   - '6'
@@ -66,8 +66,8 @@ layers:
   - '-'
   - '='
   - PSCRN
-  - {t: num_lock, h: LCTRL}
-  - {t: SPACE, h: LSHFT}
+  - {t: SPACE, h: LCTRL}
+  - {t: num_lock, h: LSHFT}
   - {t: BSPC, h: RS(RC(RA(RALT)))}
   - ''
   num_hold:
@@ -311,7 +311,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: SPACE, s: '&caps_word'}
+  - '&gamespc'
   - LSHFT
   - {t: ▽, type: trans}
   - {t: default, h: num_hold}
@@ -579,7 +579,7 @@ combos:
 - p: [0, 1]
   k: ESC
   l: [game]
-- p: [16, 19]
+- p: [16, 17, 18]
   k: {t: mouse, h: toggle}
   l: [default, num, mouse, game]
 - p: [0, 1]
@@ -588,9 +588,6 @@ combos:
 - p: [11, 12, 13]
   k: TAB
   l: [default, num, num_lock]
-- p: [10, 11]
-  k: TAB
-  l: [default]
 - p: [20, 21]
   k: DEL
   l: [default]
@@ -613,6 +610,18 @@ combos:
   l: [default]
 - p: [33, 18]
   k: RIGHT
+  l: [default]
+- p: [33, 19]
+  k: ''''
+  l: [default]
+- p: [33, 18]
+  k: RIGHT
+  l: [default]
+- p: [33, 27]
+  k: '-'
+  l: [default]
+- p: [33, 28]
+  k: '='
   l: [default]
 - p: [1, 2]
   k: '!'
@@ -646,10 +655,4 @@ combos:
   l: [default]
 - p: [5, 6]
   k: '|'
-  l: [default]
-- p: [6, 7]
-  k: '-'
-  l: [default]
-- p: [7, 8]
-  k: '='
   l: [default]
