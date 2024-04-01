@@ -93,7 +93,7 @@
         JJ_MM(mmcaps, mod_morph_caps, mods = <(MOD_LSFT)>; bindings = <&kp ESC>, <&kp CAPSLOCK>;)
         JJ_MM(mmspc, mod_morph_space_caps_word, mods = <(MOD_LSFT)>; bindings = <&kp SPACE>, <&caps_word>;)
         JJ_HT_HOLD(spc, caps_word_hold, bindings = <&kp>, <&mmspc>;)
-        JJ_HT_HOLD(shft, smart_shift, hold-while-undecided; hold-while-undecided-linger; bindings = <&kp>, <&mmshift>;)
+        JJ_HT_HOLD(shft, smart_shift, hold-while-undecided; bindings = <&kp>, <&mmshift>;)
         JJ_MM(mmshift, mod_morph_shift, mods = <(MOD_LSFT)>; bindings = <&sk LSHFT>, <&caps_word>;)
         // JJ_HT_HOLD(spc, space_shift, bindings = <&kp>, <&kp>;)
         JJ_HT_HOLD(rm, repeat_mod, bindings = <&kp>, <&key_repeat>;)
@@ -126,7 +126,7 @@
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
                &ltz FN Z &hl LCTRL X &hl RALT C &hl RGUI V &lt LNAV B     &kp K &hr LGUI M &hr LALT COMMA &hr LCTRL DOT &lt MOUSE FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                    &spc LCTRL SPACE &shft LSHFT LSHFT &bs MEH(RALT) BSPC &nl NUM ESC
+                                    &shft LSHFT LSHFT &spc LCTRL SPACE &bs MEH(RALT) BSPC &nl NUM ESC
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             // esc gets thumb cuz vim & as safe key to verify layer 0
 	    // mmsa = tap for colon, shift for semicolon, RALT for double quotes, NUM layer for single quotes
@@ -144,7 +144,7 @@
             //│ DELETE   │  7       │  8       │  9       │  0       │   │ TAB      │ PG_UP    │ -_       │ PG_DN    │ PSCRN    │
                 &kp DEL    &kp N7     &kp N8     &kp N9     &kp N0         &kp LBKT   &kp RBKT   &kp MINUS  &kp EQUAL  &kp PSCRN
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                    &mt LCTRL SPACE &mtog LSHFT NUM_LOCK &bs MEH(RALT) BSPC &none
+                                    &mtog LSHFT NUM_LOCK &mt LCTRL SPACE &bs MEH(RALT) BSPC &none
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -230,7 +230,7 @@
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
                 &kp Z      &kp X      &kp C      &kp V     &lt LNAV B      &trans     &trans     &trans     &trans     &trans
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                &gamespc    &kp LSHFT      &trans    &lt2 NUM 0
+                                                &mmspc      &kp LSHFT      &trans    &lt2 NUM 0
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             // esc gets thumb cuz vim & as safe key to verify layer 0
             >;
@@ -399,7 +399,7 @@
         };
         combo_mouse_layer {
             timeout-ms = CSLOW;
-            key-positions = <16 17 18>; // L U Y
+            key-positions = <6 7 8>; // L U Y
             bindings = <&tog MOUSE>;
             layers = <0 LNUM MOUSE GAME>;
             require-prior-idle-ms = <JJ_COMBO_IDLE>;
@@ -473,12 +473,6 @@
             timeout-ms = CSLOW;
             key-positions = <33 19>; // right outer thumb + O key
             bindings = <&kp APOS>;
-            layers = <0>;
-        };
-        combo_right {
-            timeout-ms = CSLOW;
-            key-positions = <33 18>; // right outer thumb + O key
-            bindings = <&kp RIGHT>;
             layers = <0>;
         };
         combo_hyphen {
