@@ -90,11 +90,14 @@
         JJ_MM(mmqgr, mod_morph_q_grave, mods = <(MOD_RALT)>; bindings = <&kp Q>, <&mmgrave>;)
         JJ_MM(mmat, mod_morph_a_tab, mods = <(MOD_RALT|MOD_RGUI)>; keep-mods = <(MOD_RALT|MOD_RGUI)>; bindings = <&kp A>, <&kp TAB>;)
         JJ_MM(mmrr, mod_morph_r_repeat_key, mods = <(MOD_RALT)>; bindings = <&kp R>, <&key_repeat>;)
+        JJ_MM(mmts, mod_morph_t_shift, mods = <(MOD_RALT|MOD_LALT)>; bindings = <&kp T>, <&sk LSHFT>;)
+        JJ_MM(mmns, mod_morph_n_shift, mods = <(MOD_RALT|MOD_LALT)>; bindings = <&kp N>, <&sk LSHFT>;)
         JJ_MM(mmcaps, mod_morph_caps, mods = <(MOD_LSFT)>; bindings = <&kp ESC>, <&kp CAPSLOCK>;)
         JJ_MM(mmspc, mod_morph_space_caps_word, mods = <(MOD_LSFT)>; bindings = <&kp SPACE>, <&caps_word>;)
-        JJ_HT_HOLD(spc, caps_word_hold, bindings = <&kp>, <&mmspc>;)
-        JJ_HT_HOLD(shft, smart_shift, hold-while-undecided; bindings = <&kp>, <&mmshift>;)
-        JJ_MM(mmshift, mod_morph_shift, mods = <(MOD_LSFT)>; bindings = <&sk LSHFT>, <&caps_word>;)
+        JJ_HT_HOLD(caps, caps_word_hold, bindings = <&kp>, <&mmcaps>;)
+        JJ_HT_HOLD(spc, space_stuff, bindings = <&kp>, <&mmspc>;)
+        // JJ_HT_HOLD(shft, smart_shift, hold-while-undecided; bindings = <&kp>, <&mmshift>;)
+        // JJ_MM(mmshift, mod_morph_shift, mods = <(MOD_LSFT)>; bindings = <&sk LSHFT>, <&caps_word>;)
         // JJ_HT_HOLD(spc, space_shift, bindings = <&kp>, <&kp>;)
         JJ_HT_HOLD(rm, repeat_mod, bindings = <&kp>, <&key_repeat>;)
         JJ_HT_HOLD(mto, mod_tap_to_layer, bindings = <&sk>, <&to>;)
@@ -105,10 +108,10 @@
         JJ_HT_TAP(hm, homerow_mods, bindings = <&kp>, <&kp>;)
         JJ_HML_34(hl, homerow_mods_left, bindings = <&kp>, <&kp>;)
         JJ_HMR_34(hr, homerow_mods_right, bindings = <&kp>, <&kp>;)
-        // JJ_HT_HOLD(nl, num_layer_stuff, quick-tap-ms = <200>; bindings = <&mo>, <&mmnl>;)
-        JJ_HT_HOLD(nl, num_layer_stuff, hold-while-undecided; bindings = <&mo>, <&mmnl>;)
+        JJ_HT_HOLD(nl, num_layer_stuff, quick-tap-ms = <200>; bindings = <&mo>, <&key_repeat>;)
+        // JJ_HT_HOLD(nl, num_layer_stuff, hold-while-undecided; bindings = <&mo>, <&mmnl>;)
         JJ_HT_HOLD(bs, backspace_meh, quick-tap-ms = <200>; bindings = <&kp>, <&kp>;)
-        JJ_MM(mmnl, mod_morph_num_layer_caps_word, mods = <(MOD_LSFT)>; bindings = <&kp ESC>, <&kp CAPSLOCK>;)
+        // JJ_MM(mmnl, mod_morph_num_layer_caps_word, mods = <(MOD_LSFT)>; bindings = <&key_repeat>, <&kp CAPSLOCK>;)
         JJ_TD(numdot, num_layer_dot, <&kp DOT>, <&none>, <&kp LC(LA(DEL))>, <&tog GAME>)
         JJ_MM(mmctrlspc, mod_morph_ctrl_space, mods = <(MOD_LSFT)>; bindings = <&kp SPACE>, <&kp LCTRL>;)
     };
@@ -121,12 +124,12 @@
                 &mmqgr     &kp W      &kp F      &kp P      &kp G          &kp J      &kp L      &kp U      &kp Y      &mmsa
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  A       │  R       │  S       │  T       │  D       │   │  H       │  N       │  E       │  I       │  O       │
-                &mmat      &mmrr      &kp S      &kp T     &lt TERM D      &kp H      &kp N      &kp E      &kp I      &kp O
+                &mmat      &mmrr      &kp S      &mmts     &lt TERM D      &kp H      &mmns      &kp E      &kp I      &kp O
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
                &ltz FN Z &hl LCTRL X &hl RALT C &hl RGUI V &lt LNAV B     &kp K &hr LGUI M &hr LALT COMMA &hr LCTRL DOT &lt MOUSE FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                    &shft LSHFT LSHFT &spc LCTRL SPACE &bs MEH(RALT) BSPC &nl NUM ESC
+                                    &caps LCTRL ESC &spc LSHFT SPACE &spc MEH(RALT) SPACE &nl NUM NUM
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             // esc gets thumb cuz vim & as safe key to verify layer 0
 	    // mmsa = tap for colon, shift for semicolon, RALT for double quotes, NUM layer for single quotes
@@ -136,7 +139,7 @@
             bindings = < // TODO: decide whether to split this or not
             //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
             //│ `~       │  1       │  2       │  3       │  \|      │   │ [{       │ HOME     │ UP       │ END      │ =+       │
-                &mmgrave   &kp N1     &kp N2     &kp N3     &kp COMMA      &mmpipe &hm PG_UP HOME &kp UP &hm PG_DN END &mmsc
+                &mmgrave   &kp N1     &kp N2     &kp N3     &kp COMMA      &mmpipe &hm PG_UP HOME &kp UP &hm PG_DN END &kp BSPC
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ TAB      │  4       │  5       │  6       │  .       │   │ ]}       │ LEFT     │ DOWN     │ RIGHT    │ '"       │
                 &kp ESC    &kp N4     &kp N5     &kp N6     &kp DOT        &kp TAB    &kp LEFT   &kp DOWN   &kp RIGHT  &kp APOS
@@ -144,7 +147,7 @@
             //│ DELETE   │  7       │  8       │  9       │  0       │   │ TAB      │ PG_UP    │ -_       │ PG_DN    │ PSCRN    │
                 &kp DEL    &kp N7     &kp N8     &kp N9     &kp N0         &kp LBKT   &kp RBKT   &kp MINUS  &kp EQUAL  &kp PSCRN
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                    &mtog LSHFT NUM_LOCK &mt LCTRL SPACE &bs MEH(RALT) BSPC &none
+                                    &mtog LCTRL NUM_LOCK &spc LSHFT SPACE &spc MEH(RALT) SPACE &none
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -230,7 +233,7 @@
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
                 &kp Z      &kp X      &kp C      &kp V     &lt LNAV B      &trans     &trans     &trans     &trans     &trans
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                &mmspc      &kp LSHFT      &trans    &lt2 NUM 0
+                                                &kp LSHFT   &mmspc         &trans    &lt2 NUM 0
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             // esc gets thumb cuz vim & as safe key to verify layer 0
             >;
@@ -342,6 +345,7 @@
 	// TODO: mouse layer
     };
     macros {
+        ZMK_MACRO(smart_shift, bindings = <&macro_release &caps_word>, <&sk LSHFT>;)
         ZMK_MACRO(nvim, bindings = <&kp N &kp V &kp I &kp M &kp SPACE &to 0>;)
         ZMK_MACRO(ls, bindings = <&kp L &kp S &kp SPACE &kp KP_MINUS>, <&macro_press &kp LSHFT>, <&kp A>, <&macro_release &kp LSHFT>, <&kp L &kp H &kp SPACE &to 0>;)
         ZMK_MACRO(task, bindings = <&kp T &kp A &kp S &kp K &kp SPACE &to 0>;)
