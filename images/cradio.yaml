@@ -14,10 +14,10 @@ layers:
   - {t: A, s: TAB}
   - {t: R, s: '&key_repeat'}
   - S
-  - T
+  - {t: T, s: LSHFT}
   - {t: D, h: term}
   - H
-  - N
+  - {t: N, s: LSHFT}
   - E
   - I
   - O
@@ -31,10 +31,10 @@ layers:
   - {t: ',', h: LALT}
   - {t: ., h: LCTRL}
   - {t: /, h: mouse}
-  - {t: LSHFT, h: LSHFT, s: '&caps_word'}
-  - {t: SPACE, h: LCTRL, s: '&caps_word'}
-  - {t: BSPC, h: RS(RC(RA(RALT)))}
-  - {t: ESC, h: num_hold, s: CAPSLOCK}
+  - {t: ESC, h: LCTRL, s: CAPSLOCK}
+  - {t: SPACE, h: LSHFT, s: '&caps_word'}
+  - {t: SPACE, h: RS(RC(RA(RALT))), s: '&caps_word'}
+  - {t: '&key_repeat 2', h: num_hold}
   num:
   - {t: '~', s: '`'}
   - '1'
@@ -45,7 +45,7 @@ layers:
   - {t: HOME, h: PG UP}
   - UP
   - {t: END, h: PG DN}
-  - {t: '&tdc', s: ;}
+  - BSPC
   - ESC
   - '4'
   - '5'
@@ -66,9 +66,9 @@ layers:
   - '-'
   - '='
   - PSCRN
-  - {t: num_lock, h: LSHFT}
-  - {t: SPACE, h: LCTRL}
-  - {t: BSPC, h: RS(RC(RA(RALT)))}
+  - {t: num_lock, h: LCTRL}
+  - {t: SPACE, h: LSHFT, s: '&caps_word'}
+  - {t: SPACE, h: RS(RC(RA(RALT))), s: '&caps_word'}
   - ''
   num_hold:
   - {t: ▽, type: trans}
@@ -311,8 +311,8 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: SPACE, s: '&caps_word'}
   - LSHFT
+  - {t: SPACE, s: '&caps_word'}
   - {t: ▽, type: trans}
   - {t: default, h: num_hold}
   term:

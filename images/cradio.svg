@@ -165,6 +165,7 @@ path.combo {
 <g transform="translate(196, 100)" class="key keypos-13">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">T</text>
+<text x="0" y="-24" class="key shifted">LSHFT</text>
 </g>
 <g transform="translate(252, 108)" class="key keypos-14">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -178,6 +179,7 @@ path.combo {
 <g transform="translate(476, 100)" class="key keypos-16">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">N</text>
+<text x="0" y="-24" class="key shifted">LSHFT</text>
 </g>
 <g transform="translate(532, 84)" class="key keypos-17">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -243,26 +245,28 @@ path.combo {
 </g>
 <g transform="translate(224, 238)" class="key keypos-30">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap">LSHFT</text>
-<text x="0" y="24" class="key hold">LSHFT</text>
-<text x="0" y="-24" class="key shifted"><tspan style="font-size: 70%">&amp;caps_word</tspan></text>
+<text x="0" y="0" class="key tap">ESC</text>
+<text x="0" y="24" class="key hold">LCTRL</text>
+<text x="0" y="-24" class="key shifted"><tspan style="font-size: 88%">CAPSLOCK</tspan></text>
 </g>
 <g transform="translate(280, 252)" class="key keypos-31">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">SPACE</text>
-<text x="0" y="24" class="key hold">LCTRL</text>
+<text x="0" y="24" class="key hold">LSHFT</text>
 <text x="0" y="-24" class="key shifted"><tspan style="font-size: 70%">&amp;caps_word</tspan></text>
 </g>
 <g transform="translate(392, 252)" class="key keypos-32">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap">BSPC</text>
+<text x="0" y="0" class="key tap">SPACE</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">RS(RC(RA(RALT)))</tspan></text>
+<text x="0" y="-24" class="key shifted"><tspan style="font-size: 70%">&amp;caps_word</tspan></text>
 </g>
 <g transform="translate(448, 238)" class="key keypos-33">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap">ESC</text>
+<text x="0" y="0" class="key tap">
+<tspan x="0" dy="-1.2em" style="font-size: 64%">&amp;key_repeat</tspan><tspan x="0" dy="1.2em" style="font-size: 64%">2</tspan>
+</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 88%">num_hold</tspan></text>
-<text x="0" y="-24" class="key shifted"><tspan style="font-size: 88%">CAPSLOCK</tspan></text>
 </g>
 <g class="combo combopos-0">
 <path d="M532,39 l-37,3" class="combo"/>
@@ -435,8 +439,7 @@ path.combo {
 </g>
 <g transform="translate(644, 80)" class="key keypos-9">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap">&amp;tdc</text>
-<text x="0" y="-24" class="key shifted">;</text>
+<text x="0" y="0" class="key tap">BSPC</text>
 </g>
 <g transform="translate(28, 136)" class="key keypos-10">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -521,17 +524,19 @@ path.combo {
 <g transform="translate(224, 238)" class="key keypos-30">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap"><tspan style="font-size: 88%">num_lock</tspan></text>
-<text x="0" y="24" class="key hold">LSHFT</text>
+<text x="0" y="24" class="key hold">LCTRL</text>
 </g>
 <g transform="translate(280, 252)" class="key keypos-31">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">SPACE</text>
-<text x="0" y="24" class="key hold">LCTRL</text>
+<text x="0" y="24" class="key hold">LSHFT</text>
+<text x="0" y="-24" class="key shifted"><tspan style="font-size: 70%">&amp;caps_word</tspan></text>
 </g>
 <g transform="translate(392, 252)" class="key keypos-32">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap">BSPC</text>
+<text x="0" y="0" class="key tap">SPACE</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">RS(RC(RA(RALT)))</tspan></text>
+<text x="0" y="-24" class="key shifted"><tspan style="font-size: 70%">&amp;caps_word</tspan></text>
 </g>
 <g transform="translate(448, 238)" class="key keypos-33">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -1644,12 +1649,12 @@ path.combo {
 </g>
 <g transform="translate(224, 238)" class="key keypos-30">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap">SPACE</text>
-<text x="0" y="-24" class="key shifted"><tspan style="font-size: 70%">&amp;caps_word</tspan></text>
+<text x="0" y="0" class="key tap">LSHFT</text>
 </g>
 <g transform="translate(280, 252)" class="key keypos-31">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap">LSHFT</text>
+<text x="0" y="0" class="key tap">SPACE</text>
+<text x="0" y="-24" class="key shifted"><tspan style="font-size: 70%">&amp;caps_word</tspan></text>
 </g>
 <g transform="translate(392, 252)" class="key trans keypos-32">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
