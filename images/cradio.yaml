@@ -33,7 +33,7 @@ layers:
   - {t: /, h: mouse}
   - {t: ESC, h: LCTRL, s: CAPSLOCK}
   - {t: SPACE, h: LSHFT, s: '&caps_word'}
-  - {t: SPACE, h: RS(RC(RA(RALT))), s: '&caps_word'}
+  - {t: BSPC, h: RS(RC(RA(RALT)))}
   - {t: '&key_repeat 2', h: num_hold}
   num:
   - {t: '~', s: '`'}
@@ -68,7 +68,7 @@ layers:
   - PSCRN
   - {t: num_lock, h: LCTRL}
   - {t: SPACE, h: LSHFT, s: '&caps_word'}
-  - {t: SPACE, h: RS(RC(RA(RALT))), s: '&caps_word'}
+  - {t: BSPC, h: RS(RC(RA(RALT)))}
   - ''
   num_hold:
   - {t: ▽, type: trans}
