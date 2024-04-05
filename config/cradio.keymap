@@ -129,7 +129,7 @@
             //│  Z       │  X       │  C       │  V       │  B       │   │  K       │  M       │  ,<      │  .>      │  /?      │
                &ltz FN Z &hl LCTRL X &hl RALT C &hl RGUI V &lt LNAV B     &kp K &hr LGUI M &hr LALT COMMA &hr LCTRL DOT &lt MOUSE FSLH
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                    &caps LCTRL ESC &spc LSHFT SPACE &spc MEH(RALT) SPACE &nl NUM NUM
+                                    &caps LCTRL ESC &spc LSHFT SPACE &bs MEH(RALT) BSPC &nl NUM NUM
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             // esc gets thumb cuz vim & as safe key to verify layer 0
 	    // mmsa = tap for colon, shift for semicolon, RALT for double quotes, NUM layer for single quotes
@@ -147,7 +147,7 @@
             //│ DELETE   │  7       │  8       │  9       │  0       │   │ TAB      │ PG_UP    │ -_       │ PG_DN    │ PSCRN    │
                 &kp DEL    &kp N7     &kp N8     &kp N9     &kp N0         &kp LBKT   &kp RBKT   &kp MINUS  &kp EQUAL  &kp PSCRN
             //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                    &mtog LCTRL NUM_LOCK &spc LSHFT SPACE &spc MEH(RALT) SPACE &none
+                                    &mtog LCTRL NUM_LOCK &spc LSHFT SPACE &bs MEH(RALT) BSPC &none
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
