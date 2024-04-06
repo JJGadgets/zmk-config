@@ -59,23 +59,24 @@
 // };
 
 // mouse keys (copied from urob)
-#define ZMK_MOUSE_DEFAULT_MOVE_VAL 3750  // 600
-#define ZMK_MOUSE_DEFAULT_SCRL_VAL 20    // 10
+// TODO: test USB disconnects when Bluetooth state changes on master (from both host and slave)
+// #define ZMK_MOUSE_DEFAULT_MOVE_VAL 3750  // 600
+// #define ZMK_MOUSE_DEFAULT_SCRL_VAL 20    // 10
 
-#include <dt-bindings/zmk/mouse.h>
-#include <behaviors/mouse_keys.dtsi>
+// #include <dt-bindings/zmk/mouse.h>
+// #include <behaviors/mouse_keys.dtsi>
 
-&mmv {
-  acceleration-exponent = <1>;      // 1
-  time-to-max-speed-ms = <150>;    // 40
-  delay-ms = <0>;                   // 0
-};
+// &mmv {
+//   acceleration-exponent = <1>;      // 1
+//   time-to-max-speed-ms = <150>;    // 40
+//   delay-ms = <0>;                   // 0
+// };
 
-&msc {
-  acceleration-exponent = <2>;      // 0
-  time-to-max-speed-ms = <10>;      // 500
-  delay-ms = <0>;                   // 10
-};
+// &msc {
+//   acceleration-exponent = <2>;      // 0
+//   time-to-max-speed-ms = <10>;      // 500
+//   delay-ms = <0>;                   // 10
+// };
 
 / {
     behaviors {
@@ -201,22 +202,23 @@
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
-        mouse_layer {
-            bindings = <
-            //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            //│ `~       │  1       │  2       │  3       │  \|      │   │ [{       │ ]}       │ -_       │ =+       │ '"       │
-                &trans     &trans     &trans     &trans     &trans &msc SCRL_UP &msc SCRL_LEFT &mmv MOVE_UP &msc SCRL_RIGHT &to 0
-            //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│ TAB      │  4       │  5       │  6       │  0       │   │ TAB      │ LEFT     │ DOWN     │ UP       │ RIGHT    │
-                &trans     &trans     &trans     &trans     &trans &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &to 0
-            //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            //│ DELETE   │  7       │  8       │  9       │  0       │   │ PSCRN    │ HOME     │ PG_UP    │ PG_DN    │ END      │
-                &trans     &trans     &trans     &trans     &trans         &none      &mkp MB4   &mkp MB3   &mkp MB5   &to 0
-            //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                                &to 0       &trans         &mkp MB1   &mkp MB2
-            //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
-            >;
-        };
+        mouse_layer { bindings = <EMPTYLAYER>; }; // TODO: test USB disconnects when Bluetooth state changes on master (from both host and slave)
+        // mouse_layer {
+        //     bindings = <
+        //     //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
+        //     //│ `~       │  1       │  2       │  3       │  \|      │   │ [{       │ ]}       │ -_       │ =+       │ '"       │
+        //         &trans     &trans     &trans     &trans     &trans &msc SCRL_UP &msc SCRL_LEFT &mmv MOVE_UP &msc SCRL_RIGHT &to 0
+        //     //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        //     //│ TAB      │  4       │  5       │  6       │  0       │   │ TAB      │ LEFT     │ DOWN     │ UP       │ RIGHT    │
+        //         &trans     &trans     &trans     &trans     &trans &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &to 0
+        //     //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        //     //│ DELETE   │  7       │  8       │  9       │  0       │   │ PSCRN    │ HOME     │ PG_UP    │ PG_DN    │ END      │
+        //         &trans     &trans     &trans     &trans     &trans         &none      &mkp MB4   &mkp MB3   &mkp MB5   &to 0
+        //     //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
+        //                                         &to 0       &trans         &mkp MB1   &mkp MB2
+        //     //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+        //     >;
+        // };
         game_layer {
             bindings = <
             // NOTE: This is suited to my gaming habits.
