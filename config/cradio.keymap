@@ -59,24 +59,23 @@
 // };
 
 // mouse keys (copied from urob)
-// TODO: test USB disconnects when Bluetooth state changes on master (from both host and slave)
-// #define ZMK_MOUSE_DEFAULT_MOVE_VAL 3750  // 600
-// #define ZMK_MOUSE_DEFAULT_SCRL_VAL 20    // 10
+#define ZMK_MOUSE_DEFAULT_MOVE_VAL 3750  // 600
+#define ZMK_MOUSE_DEFAULT_SCRL_VAL 20    // 10
 
-// #include <dt-bindings/zmk/mouse.h>
-// #include <behaviors/mouse_keys.dtsi>
+#include <dt-bindings/zmk/mouse.h>
+#include <behaviors/mouse_keys.dtsi>
 
-// &mmv {
-//   acceleration-exponent = <1>;      // 1
-//   time-to-max-speed-ms = <150>;    // 40
-//   delay-ms = <0>;                   // 0
-// };
+&mmv {
+  acceleration-exponent = <1>;      // 1
+  time-to-max-speed-ms = <150>;    // 40
+  delay-ms = <0>;                   // 0
+};
 
-// &msc {
-//   acceleration-exponent = <2>;      // 0
-//   time-to-max-speed-ms = <10>;      // 500
-//   delay-ms = <0>;                   // 10
-// };
+&msc {
+  acceleration-exponent = <2>;      // 0
+  time-to-max-speed-ms = <10>;      // 500
+  delay-ms = <0>;                   // 10
+};
 
 / {
     behaviors {
@@ -115,6 +114,7 @@
         // JJ_MM(mmnl, mod_morph_num_layer_caps_word, mods = <(MOD_LSFT)>; bindings = <&key_repeat>, <&kp CAPSLOCK>;)
         JJ_TD(numdot, num_layer_dot, <&kp DOT>, <&none>, <&kp LC(LA(DEL))>, <&tog GAME>)
         JJ_MM(mmctrlspc, mod_morph_ctrl_space, mods = <(MOD_LSFT)>; bindings = <&kp SPACE>, <&kp LCTRL>;)
+        JJ_TD(tdrst, tap_dance_reset, <&sys_reset>, <&none>, <&bootloader>)
     };
     keymap {
         compatible = "zmk,keymap";
@@ -177,7 +177,7 @@
                 &gresc    &kp C_PREV  &kp C_PP  &kp C_NEXT  &kp PSCRN &kp C_MUTE &kp C_VOL_DN &kp C_VOL_UP &kp C_BRI_DN &kp C_BRI_UP
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ LEFT     │ DOWN     │ UP       │ RIGHT    │ Num Layer│   │          │TODO:BTDSC│          │          │          │
-                &kp LEFT   &kp DOWN   &kp UP   &kp RIGHT &tog NUM_LOCK &out OUT_TOG &bt BT_CLR &bt BT_PRV &bt BT_NXT &ext_power EP_TOG
+                &tdrst   &kp DOWN   &kp UP   &kp RIGHT &tog NUM_LOCK      &out OUT_TOG &bt BT_CLR &bt BT_PRV &bt BT_NXT &tdrst
             //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             //│ HOME     │ PG_DN    │ PG_UP    │ END      │          │   │          │          │          │          │          │
                 &kp HOME  &kp PG_DN   &kp PG_UP  &kp END    &trans    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
@@ -202,23 +202,22 @@
             //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
-        mouse_layer { bindings = <EMPTYLAYER>; }; // TODO: test USB disconnects when Bluetooth state changes on master (from both host and slave)
-        // mouse_layer {
-        //     bindings = <
-        //     //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //     //│ `~       │  1       │  2       │  3       │  \|      │   │ [{       │ ]}       │ -_       │ =+       │ '"       │
-        //         &trans     &trans     &trans     &trans     &trans &msc SCRL_UP &msc SCRL_LEFT &mmv MOVE_UP &msc SCRL_RIGHT &to 0
-        //     //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //     //│ TAB      │  4       │  5       │  6       │  0       │   │ TAB      │ LEFT     │ DOWN     │ UP       │ RIGHT    │
-        //         &trans     &trans     &trans     &trans     &trans &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &to 0
-        //     //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //     //│ DELETE   │  7       │  8       │  9       │  0       │   │ PSCRN    │ HOME     │ PG_UP    │ PG_DN    │ END      │
-        //         &trans     &trans     &trans     &trans     &trans         &none      &mkp MB4   &mkp MB3   &mkp MB5   &to 0
-        //     //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-        //                                         &to 0       &trans         &mkp MB1   &mkp MB2
-        //     //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
-        //     >;
-        // };
+        mouse_layer {
+            bindings = <
+            //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
+            //│ `~       │  1       │  2       │  3       │  \|      │   │ [{       │ ]}       │ -_       │ =+       │ '"       │
+                &trans     &trans     &trans     &trans     &trans &msc SCRL_UP &msc SCRL_LEFT &mmv MOVE_UP &msc SCRL_RIGHT &to 0
+            //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+            //│ TAB      │  4       │  5       │  6       │  0       │   │ TAB      │ LEFT     │ DOWN     │ UP       │ RIGHT    │
+                &trans     &trans     &trans     &trans     &trans &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &to 0
+            //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+            //│ DELETE   │  7       │  8       │  9       │  0       │   │ PSCRN    │ HOME     │ PG_UP    │ PG_DN    │ END      │
+                &trans     &trans     &trans     &trans     &trans         &none      &mkp MB4   &mkp MB3   &mkp MB5   &to 0
+            //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
+                                                &to 0       &trans         &mkp MB1   &mkp MB2
+            //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+            >;
+        };
         game_layer {
             bindings = <
             // NOTE: This is suited to my gaming habits.
