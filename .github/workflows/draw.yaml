@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    uses: "caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@v0.13.2"
+    uses: "caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@dbc34ecc37630eb2ba0ea83111f71b0e0e4c5cd4" # v0.19.0
     with:
       output_folder: "images"
     permissions:
