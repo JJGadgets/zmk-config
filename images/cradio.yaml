@@ -1,4 +1,4 @@
-layout: {qmk_keyboard: ferris/sweep}
+layout: {qmk_keyboard: ferris_rotated}
 layers:
   default:
   - {t: Q, s: '~'}
@@ -33,7 +33,7 @@ layers:
   - {t: /, h: mouse}
   - {t: ESC, h: LCTRL, s: CAPSLOCK}
   - {t: SPACE, h: LSHFT, s: '&caps_word'}
-  - {t: BSPC, h: RS(RC(RA(RALT)))}
+  - {t: BSPC, h: Sft+Ctl+AGr+ RALT}
   - {t: '&key_repeat 2', h: num_hold}
   num:
   - {t: '~', s: '`'}
@@ -68,7 +68,7 @@ layers:
   - PSCRN
   - {t: num_lock, h: LCTRL}
   - {t: SPACE, h: LSHFT, s: '&caps_word'}
-  - {t: BSPC, h: RS(RC(RA(RALT)))}
+  - {t: BSPC, h: Sft+Ctl+AGr+ RALT}
   - ''
   num_hold:
   - {t: ▽, type: trans}
@@ -206,7 +206,7 @@ layers:
   - {t: BT, h: '2'}
   - {t: BT, h: '3'}
   - {t: BT, h: '4'}
-  - LA(TAB)
+  - Alt+ TAB
   - ENTER
   - {t: ▽, type: trans}
   - {t: fn, h: toggle}
@@ -220,7 +220,7 @@ layers:
   - F14
   - F15
   - F16
-  - LC(LA(DEL))
+  - Ctl+Alt+ DEL
   - LGUI
   - F4
   - F5
@@ -240,7 +240,7 @@ layers:
   - F22
   - F23
   - F24
-  - RS(RC(RA(RALT)))
+  - Sft+Ctl+AGr+ RALT
   - {t: default, h: toggle}
   - {t: lock, h: toggle}
   - {t: ▽, type: trans}
