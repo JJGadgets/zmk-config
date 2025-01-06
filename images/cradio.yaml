@@ -33,7 +33,7 @@ layers:
   - {t: /, h: mouse}
   - {t: ESC, h: LCTRL, s: CAPSLOCK}
   - {t: SPACE, h: LSHFT, s: '&caps_word'}
-  - {t: BSPC, h: Sft+Ctl+AGr+ RALT}
+  - {t: BSPC, h: Sft+Ctl+AltGr+RALT}
   - {t: '&key_repeat 2', h: num_hold}
   num:
   - {t: '~', s: '`'}
@@ -68,7 +68,7 @@ layers:
   - PSCRN
   - {t: num_lock, h: LCTRL}
   - {t: SPACE, h: LSHFT, s: '&caps_word'}
-  - {t: BSPC, h: Sft+Ctl+AGr+ RALT}
+  - {t: BSPC, h: Sft+Ctl+AltGr+RALT}
   - ''
   num_hold:
   - {t: ▽, type: trans}
@@ -206,7 +206,7 @@ layers:
   - {t: BT, h: '2'}
   - {t: BT, h: '3'}
   - {t: BT, h: '4'}
-  - Alt+ TAB
+  - Alt+TAB
   - ENTER
   - {t: ▽, type: trans}
   - {t: fn, h: toggle}
@@ -220,7 +220,7 @@ layers:
   - F14
   - F15
   - F16
-  - Ctl+Alt+ DEL
+  - Ctl+Alt+DEL
   - LGUI
   - F4
   - F5
@@ -240,7 +240,7 @@ layers:
   - F22
   - F23
   - F24
-  - Sft+Ctl+AGr+ RALT
+  - Sft+Ctl+AltGr+RALT
   - {t: default, h: toggle}
   - {t: lock, h: toggle}
   - {t: ▽, type: trans}
