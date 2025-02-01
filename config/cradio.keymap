@@ -65,6 +65,8 @@
 #include <dt-bindings/zmk/mouse.h>
 #include <behaviors/mouse_keys.dtsi>
 
+#include <dt-bindings/zmk/pointing.h>
+
 &mmv {
   acceleration-exponent = <1>;      // 1
   time-to-max-speed-ms = <150>;    // 40
@@ -590,9 +592,9 @@
 
 &kscan0 {
     // eager debouncing
-    debounce-press-ms = <0>;
-    debounce-release-ms = <6>;
+    debounce-press-ms = <1>; // increased from 0 to 1 due to G key being wonky af
+    debounce-release-ms = <5>; // decreased from 6 to 5 due to G key being wonky af and scan period being reset to 1
     // increasing scan period, *might* reduce power use...?
     // TODO: set press to 0 and scan to 3, verify power
-    debounce-scan-period-ms = <3>;
+    //debounce-scan-period-ms = <3>; // removed due to G key being wonky af
 };
